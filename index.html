@@ -35,6 +35,7 @@
             padding: 0 20px;
         }
 
+        /* Header */
         header {
             padding: 20px 0;
             position: fixed;
@@ -108,6 +109,7 @@
             background: rgba(6, 182, 212, 0.1);
         }
 
+        /* Hero Section */
         .hero {
             padding: 160px 0 80px;
             position: relative;
@@ -193,6 +195,7 @@
             background-clip: text;
         }
 
+        /* Stats Section */
         .stats-section {
             padding: 80px 0;
             background: rgba(26, 31, 46, 0.5);
@@ -218,6 +221,7 @@
             border-color: var(--accent-cyan);
         }
 
+        /* Product Section */
         .product-section {
             padding: 80px 0;
         }
@@ -260,6 +264,7 @@
             line-height: 1.7;
         }
 
+        /* Modes Section */
         .modes-section {
             padding: 80px 0;
             background: rgba(26, 31, 46, 0.3);
@@ -315,6 +320,7 @@
             line-height: 1.6;
         }
 
+        /* Pricing Section */
         .pricing-section {
             padding: 80px 0;
         }
@@ -391,6 +397,7 @@
             font-size: 18px;
         }
 
+        /* FAQ Section */
         .faq-section {
             padding: 80px 0;
         }
@@ -445,6 +452,7 @@
             line-height: 1.7;
         }
 
+        /* Testimonials Section */
         .testimonials-section {
             padding: 80px 0;
             background: rgba(26, 31, 46, 0.5);
@@ -520,6 +528,7 @@
             font-size: 15px;
         }
 
+        /* Contact Section */
         .contact-section {
             padding: 80px 0;
             background: rgba(26, 31, 46, 0.3);
@@ -546,9 +555,14 @@
             transform: translateY(-5px);
         }
 
+        .contact-icon {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
         .contact-card h3 {
             font-size: 18px;
-            margin: 15px 0 10px;
+            margin-bottom: 10px;
         }
 
         .contact-card a {
@@ -557,22 +571,7 @@
             font-weight: 600;
         }
 
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 15px;
-        }
-
-        .social-icon {
-            transition: transform 0.3s ease;
-            display: inline-block;
-        }
-
-        .social-icon:hover {
-            transform: translateY(-3px);
-        }
-
+        /* Footer */
         footer {
             padding: 40px 0;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -580,6 +579,7 @@
             color: var(--text-secondary);
         }
 
+        /* Responsive */
         @media (max-width: 968px) {
             .hero-content {
                 grid-template-columns: 1fr;
@@ -613,6 +613,7 @@
     </style>
 </head>
 <body>
+    <!-- Header -->
     <header>
         <div class="container">
             <div class="header-content">
@@ -654,6 +655,7 @@
         </div>
     </header>
 
+    <!-- Hero Section -->
     <section class="hero">
         <div class="container">
             <div class="hero-content">
@@ -686,6 +688,7 @@
         </div>
     </section>
 
+    <!-- Stats Section -->
     <section class="stats-section">
         <div class="container">
             <div class="stats-grid">
@@ -709,6 +712,7 @@
         </div>
     </section>
 
+    <!-- Product Section -->
     <section class="product-section" id="product">
         <div class="container">
             <h2 class="section-title">Что такое MULTITRADE?</h2>
@@ -737,6 +741,7 @@
         </div>
     </section>
 
+    <!-- Modes Section -->
     <section class="modes-section">
         <div class="container">
             <h2 class="section-title">Режимы торговли</h2>
@@ -773,11 +778,12 @@
         </div>
     </section>
 
+    <!-- Pricing Section -->
     <section class="pricing-section" id="pricing">
         <div class="container">
             <h2 class="section-title">Тарифы</h2>
             <div class="pricing-grid">
-                <div class="pricing-card featured">
+                <div class="pricing-card">
                     <h3>Самостоятельная настройка</h3>
                     <div class="price">$750</div>
                     <ul class="pricing-features">
@@ -791,4 +797,278 @@
                     <a href="#contact" class="btn btn-secondary">Выбрать тариф</a>
                 </div>
                 
-                <div class="
+                <div class="pricing-card featured">
+                    <h3>Настройка под ключ</h3>
+                    <div class="price">$950</div>
+                    <ul class="pricing-features">
+                        <li>Всё из предыдущего тарифа</li>
+                        <li>Полная настройка робота</li>
+                        <li>Индивидуальная консультация</li>
+                        <li>Оптимизация под ваш счет</li>
+                        <li>Приоритетная поддержка</li>
+                        <li>1 месяц бесплатно</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary">Выбрать тариф</a>
+                </div>
+            </div>
+            
+            <div id="trial" style="margin-top: 60px; text-align: center; padding: 50px; background: var(--bg-card); border-radius: 20px; border: 2px solid var(--accent-emerald);">
+                <h3 style="font-size: 32px; margin-bottom: 20px;">🎁 Бесплатный пробный период</h3>
+                <p style="color: var(--text-secondary); font-size: 18px; max-width: 700px; margin: 0 auto 30px;">
+                    Получите полный доступ к MULTITRADE на 1 месяц абсолютно бесплатно. Проверьте эффективность робота на своем счете без каких-либо обязательств.
+                </p>
+                <a href="#contact" class="btn btn-primary">Активировать пробный период</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section" id="faq">
+        <div class="container">
+            <h2 class="section-title">Часто задаваемые вопросы</h2>
+            <p style="text-align: center; color: var(--text-secondary); max-width: 800px; margin: 0 auto 50px; font-size: 18px;">
+                Ответы на самые популярные вопросы о MULTITRADE
+            </p>
+            
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-number">1</span>
+                        <h3>Что делает торговый робот MultiTrade?</h3>
+                    </div>
+                    <div class="faq-answer">
+                        MultiTrade — это автоматизированный торговый советник для MetaTrader 4, который использует три трендово-сеточные стратегии. Он анализирует рынок, определяет тренды, учитывает волатильность и открывает сделки без участия человека.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-number">2</span>
+                        <h3>На каких валютных парах робот работает лучше всего?</h3>
+                    </div>
+                    <div class="faq-answer">
+                        Рекомендованные пары: EURCAD, USDCAD, USDNZD, EURNZD, GBPUSD, EURGBP, USDCHF, EURCHF, AUDUSD, NZDCAD. Таймфрейм — H1 (один час).
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-number">3</span>
+                        <h3>Сколько можно заработать?</h3>
+                    </div>
+                    <div class="faq-answer">
+                        Доходность зависит от выбранного режима торговли и уровня риска. В среднем при стандартных настройках робот показывает 60–100% годовых при умеренных просадках.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-number">4</span>
+                        <h3>Какие режимы торговли доступны?</h3>
+                    </div>
+                    <div class="faq-answer">
+                        Робот предлагает 5 режимов:<br><br>
+                        <strong>• Стандарт</strong> — сбалансированный, работает по тренду и точкам разворота.<br>
+                        <strong>• Трио-классика</strong> — более консервативный, классический вариант сеточной торговли.<br>
+                        <strong>• Агрессивно-трендовый</strong> — для сильных трендов и высоких движений.<br>
+                        <strong>• Средняя консолидация</strong> — низкорисковый, когда рынок во флэте.<br>
+                        <strong>• Усиленный тренд</strong> — вариант между стандартом и консолидацией, оптимален по соотношению риск/доход.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-number">5</span>
+                        <h3>Можно ли регулировать уровень риска?</h3>
+                    </div>
+                    <div class="faq-answer">
+                        Да. Через параметр Risk multiplier можно увеличивать или уменьшать стартовый лот, подстраивая стратегию под свой риск-профиль. Также есть настройки эквити-стопа по паре и по счёту, чтобы робот автоматически закрыл все позиции при достижении заданной просадки.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-number">6</span>
+                        <h3>Как робот защищает депозит?</h3>
+                    </div>
+                    <div class="faq-answer">
+                        MultiTrade использует:<br><br>
+                        • Автоматическую фиксацию убытка при достижении лимита просадки<br>
+                        • Приостановку стратегий при снижении баланса<br>
+                        • Защитные тралы (перенос стопов в безубыток)<br>
+                        • Возможность вручную остановить торговлю и закрыть все позиции
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-number">7</span>
+                        <h3>Что произойдёт, если рынок резко пойдёт против робота?</h3>
+                    </div>
+                    <div class="faq-answer">
+                        Встроенные фильтры волатильности и система приостановки стратегий позволяют минимизировать потери. Робот не усредняет бесконечно — при достижении лимита убытка позиции закрываются, торговля временно приостанавливается.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-number">8</span>
+                        <h3>Можно ли использовать робот на одном счёте с другими советниками?</h3>
+                    </div>
+                    <div class="faq-answer">
+                        Да, но нужно учитывать Magic-number shift — параметр, который задаёт уникальные идентификаторы сделок. Это исключает конфликт между советниками.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-number">9</span>
+                        <h3>Что такое «режим сушки»?</h3>
+                    </div>
+                    <div class="faq-answer">
+                        Это опция Stop trading mode, которая запрещает открывать новые сделки, но позволяет текущим ордерам закрыться по алгоритму. Полезно, если вы хотите временно остановить торговлю, не вмешиваясь вручную.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-number">10</span>
+                        <h3>Что нужно для начала работы?</h3>
+                    </div>
+                    <div class="faq-answer">
+                        1. Аккаунт у брокера (например, RoboForex)<br>
+                        2. Минимальный депозит — от $200<br>
+                        3. Облачный сервер (VPS) — около $8 в месяц<br>
+                        4. Установка робота и подключение к вашему счёту (можно под ключ через нашу поддержку)
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-number">11</span>
+                        <h3>Можно ли использовать несколько стратегий на одном счёте?</h3>
+                    </div>
+                    <div class="faq-answer">
+                        Да, робот поддерживает работу нескольких стратегий и сеток одновременно, с разными параметрами и уровнями риска.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-number">12</span>
+                        <h3>Что делать, если торговля остановилась?</h3>
+                    </div>
+                    <div class="faq-answer">
+                        Всё просто: на графике нажмите кнопку «Возобновить торговлю». Или перезапустите советник — он продолжит работу в штатном режиме.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-number">13</span>
+                        <h3>Можно ли изменять параметры под себя?</h3>
+                    </div>
+                    <div class="faq-answer">
+                        Да. Все блоки (риск, сигналы, просадки, интерфейс и т. д.) доступны для ручной настройки. Новичкам мы рекомендуем использовать стандартные сет-файлы, которые идут в комплекте.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-number">14</span>
+                        <h3>Нужно ли постоянно следить за роботом?</h3>
+                    </div>
+                    <div class="faq-answer">
+                        Нет. MultiTrade полностью автономен. Но рекомендуется раз в неделю просматривать отчёт и убедиться, что сервер и терминал работают стабильно.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 class="section-title">Отзывы клиентов</h2>
+            <p style="text-align: center; color: var(--text-secondary); max-width: 800px; margin: 0 auto 50px; font-size: 18px;">
+                Реальные истории людей, которые уже используют MULTITRADE
+            </p>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">О</div>
+                        <div class="testimonial-info">
+                            <h4>Ольга</h4>
+                            <div class="testimonial-date">30 сентября 2024</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-text">
+                         Я очень оценила вашего робота, потому что он спокойный и с ним, в принципе, нет проблем. В отличии от тех, которые я использовала раньше. Вы все насроили и я больше ничего не делаю. Даже забываю что работает. Периодически вспоминаю, захожу туда и радуюсь прибыли ))
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">О</div>
+                        <div class="testimonial-info">
+                            <h4>Олеся</h4>
+                            <div class="testimonial-date">30 сентября 2024</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-text">
+                        Пользуюсь роботом почти год, проблем никаких нет, все очень понятно и прозрачно, советую и буду расширяться дальше👌
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">О</div>
+                        <div class="testimonial-info">
+                            <h4>Александр</h4>
+                            <div class="testimonial-date">Недавно</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-text">
+                        Пользуюсь роботом уже некоторое время. Начинал сначала с маленькой суммы, тестировал. Потом купил еще парочку и забросил уже депозит побольше. Результатом доволен
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Связаться с нами</h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">📱</div>
+                    <h3>Телефон / Viber / WhatsApp</h3>
+                    <a href="tel:+375333032571">+375 33 303 25 71</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">✈️</div>
+                    <h3>Telegram</h3>
+                    <a href="https://t.me/gramazeka" target="_blank">@gramazeka</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">📧</div>
+                    <h3>Email</h3>
+                    <a href="mailto:marozandreyinvest@gmail.com">marozandreyinvest@gmail.com</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Kronon MultiTrade. Работаем с 2018 года.</p>
+            <p style="margin-top: 10px; font-size: 14px;">
+                Торговля на финансовых рынках сопряжена с рисками. Прошлые результаты не гарантируют будущую прибыль.
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
