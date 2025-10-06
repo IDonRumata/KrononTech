@@ -1,138 +1,400 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kronon MultiTrade - Профессиональный торговый робот для Форекс</title>
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-    :root{
-      --bg-dark:#0f1419;
-      --bg-card:#1a1f2e;
-      --accent-cyan:#06b6d4;
-      --accent-emerald:#10b981;
-      --text-primary:#ffffff;
-      --text-secondary:#94a3b8;
-      --gradient:linear-gradient(135deg,#06b6d4 0%,#10b981 100%);
-      --brand-telegram:#26A5E4; --brand-instagram:#E4405F;
-      --brand-tiktok-cyan:#25F4EE; --brand-tiktok-pink:#FE2C55;
-      --brand-viber:#7360F2; --brand-whatsapp:#25D366;
-    }
-    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;background:var(--bg-dark);color:var(--text-primary);line-height:1.6;overflow-x:hidden}
-    .container{max-width:1200px;margin:0 auto;padding:0 20px}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kronon MultiTrade - Профессиональный торговый робот для Форекс</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    /* Header */
-    header{
-      padding:20px 0;position:fixed;width:100%;top:0;z-index:1000;
-      background:rgba(15,20,25,.95);
-      backdrop-filter:blur(10px);
-      border-bottom:1px solid rgba(255,255,255,.1)
-    }
-    .header-content{display:flex;justify-content:space-between;align-items:center}
-    .logo{display:flex;align-items:center;gap:15px}
-    .logo-text{font-size:24px;font-weight:700;letter-spacing:.5px}
-    .cta-buttons{display:flex;gap:15px}
+        :root {
+            --bg-dark: #0f1419;
+            --bg-card: #1a1f2e;
+            --accent-cyan: #06b6d4;
+            --accent-emerald: #10b981;
+            --text-primary: #ffffff;
+            --text-secondary: #94a3b8;
+            --gradient: linear-gradient(135deg, #06b6d4 0%, #10b981 100%);
+            /* brand colors */
+            --brand-telegram:#26A5E4;
+            --brand-instagram:#E4405F;
+            --brand-tiktok-cyan:#25F4EE;
+            --brand-tiktok-pink:#FE2C55;
+            --brand-viber:#7360F2;
+            --brand-whatsapp:#25D366;
+        }
 
-    .btn{padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:600;transition:all .3s;display:inline-block;border:none;cursor:pointer;font-size:15px}
-    .btn-primary{background:var(--gradient);color:#fff;box-shadow:0 4px 15px rgba(6,182,212,.3)}
-    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(6,182,212,.4)}
-    .btn-secondary{background:transparent;color:var(--text-primary);border:2px solid rgba(255,255,255,.2)}
-    .btn-secondary:hover{border-color:var(--accent-cyan);background:rgba(6,182,212,.1)}
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-    /* ===== ЛОГОТИП БЕЗ ФОНА (маска по яркости) ===== */
-    .logo-mark{
-      width:45px;height:45px;display:inline-block;background:#fff;
-      /* путь к твоему PNG с человечком */
-      -webkit-mask: url('assets/img/kronon-logo.png') center/contain no-repeat;
-              mask: url('assets/img/kronon-logo.png') center/contain no-repeat;
-      mask-mode:luminance;
-    }
-    /* Fallback для очень старых браузеров: покажем сам PNG (да, со своим фоном) */
-    @supports not ((-webkit-mask: url("")) or (mask: url(""))){
-      .logo-mark{
-        background: none;
-        display:inline-block;
-        width:45px;height:45px;
-        background-image:url('assets/img/kronon-logo.png');
-        background-position:center;
-        background-repeat:no-repeat;
-        background-size:contain;
-      }
-    }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-    /* Hero */
-    .hero{padding:160px 0 80px;position:relative;overflow:hidden}
-    .hero::before{content:'';position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(6,182,212,.15) 0%,transparent 70%);top:-200px;right:-200px;border-radius:50%}
-    .hero-content{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-    .hero-text h1{font-size:56px;font-weight:700;margin-bottom:20px;line-height:1.1;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .hero-text p{font-size:20px;color:var(--text-secondary);margin-bottom:35px}
-    .trial-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(16,185,129,.15);border:1px solid var(--accent-emerald);padding:15px 25px;border-radius:50px;margin-bottom:30px;font-weight:600;color:var(--accent-emerald)}
-    .hero-stats{background:var(--bg-card);padding:40px;border-radius:20px;border:1px solid rgba(255,255,255,.1)}
-    .stat-item{margin-bottom:25px}.stat-item:last-child{margin-bottom:0}
-    .stat-label{color:var(--text-secondary);font-size:14px;margin-bottom:8px}
-    .stat-value{font-size:36px;font-weight:700;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        /* Header */
+        header {
+            padding: 20px 0;
+            position: fixed; width: 100%; top: 0; z-index: 1000;
+            background: rgba(15, 20, 25, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .header-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 15px; }
+        .logo svg { width: 45px; height: 45px; }
+        .logo-text { font-size: 24px; font-weight: 700; letter-spacing: 0.5px; }
+        .cta-buttons { display: flex; gap: 15px; }
 
-    /* Sections */
-    .stats-section{padding:80px 0;background:rgba(26,31,46,.5)}
-    .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px}
-    .stat-card{background:var(--bg-card);padding:35px;border-radius:16px;border:1px solid rgba(255,255,255,.1);text-align:center;transition:all .3s}
-    .stat-card:hover{transform:translateY(-5px);border-color:var(--accent-cyan)}
+        .btn {
+            padding: 12px 28px; border-radius: 8px; text-decoration: none; font-weight: 600;
+            transition: all 0.3s ease; display: inline-block; border: none; cursor: pointer; font-size: 15px;
+        }
+        .btn-primary { background: var(--gradient); color: #fff; box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(6, 182, 212, 0.4); }
+        .btn-secondary { background: transparent; color: var(--text-primary); border: 2px solid rgba(255, 255, 255, 0.2); }
+        .btn-secondary:hover { border-color: var(--accent-cyan); background: rgba(6, 182, 212, 0.1); }
 
-    .product-section{padding:80px 0}
-    .section-title{text-align:center;font-size:42px;margin-bottom:50px;font-weight:700}
-    .product-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:30px;margin-top:50px}
-    .feature-card{background:var(--bg-card);padding:35px;border-radius:16px;border:1px solid rgba(255,255,255,.1);transition:all .3s}
-    .feature-card:hover{border-color:var(--accent-emerald);transform:translateY(-5px)}
-    .feature-card h3{font-size:24px;margin-bottom:15px;color:var(--accent-cyan)}
-    .feature-card p{color:var(--text-secondary);line-height:1.7}
+        /* Hero */
+        .hero { padding: 160px 0 80px; position: relative; overflow: hidden; }
+        .hero::before {
+            content: ''; position: absolute; width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.15) 0%, transparent 70%);
+            top: -200px; right: -200px; border-radius: 50%;
+        }
+        .hero-content { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .hero-text h1 {
+            font-size: 56px; font-weight: 700; margin-bottom: 20px; line-height: 1.1;
+            background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .hero-text p { font-size: 20px; color: var(--text-secondary); margin-bottom: 35px; }
+        .trial-badge {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: rgba(16, 185, 129, 0.15); border: 1px solid var(--accent-emerald);
+            padding: 15px 25px; border-radius: 50px; margin-bottom: 30px; font-weight: 600; color: var(--accent-emerald);
+        }
+        .hero-stats { background: var(--bg-card); padding: 40px; border-radius: 20px; border: 1px solid rgba(255,255,255,.1); }
 
-    .modes-section{padding:80px 0;background:rgba(26,31,46,.3)}
-    .modes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:25px;margin-top:50px}
-    .mode-card{background:var(--bg-card);padding:30px;border-radius:16px;border:1px solid rgba(255,255,255,.1);transition:all .3s;position:relative;overflow:hidden}
-    .mode-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--gradient);opacity:0;transition:opacity .3s}
-    .mode-card:hover::before{opacity:1}
-    .mode-card:hover{border-color:var(--accent-cyan);transform:translateX(5px)}
-    .mode-card h3{font-size:20px;margin-bottom:12px;color:var(--text-primary)}
-    .mode-card p{color:var(--text-secondary);font-size:14px;line-height:1.6}
+        .stat-item { margin-bottom: 25px; }
+        .stat-item:last-child { margin-bottom: 0; }
+        .stat-label { color: var(--text-secondary); font-size: 14px; margin-bottom: 8px; }
+        .stat-value {
+            font-size: 36px; font-weight: 700; background: var(--gradient);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
 
-    .pricing-section{padding:80px 0}
-    .pricing-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:40px;max-width:900px;margin:50px auto 0}
-    .pricing-card{background:var(--bg-card);padding:45px;border-radius:20px;border:2px solid rgba(255,255,255,.1);text-align:center;transition:all .3s;position:relative}
-    .pricing-card.featured{border-color:var(--accent-cyan);transform:scale(1.05)}
-    .pricing-card.featured::before{content:'ПОПУЛЯРНЫЙ';position:absolute;top:-15px;left:50%;transform:translateX(-50%);background:var(--gradient);padding:6px 20px;border-radius:20px;font-size:12px;font-weight:700}
-    .pricing-card:hover{transform:translateY(-10px);border-color:var(--accent-emerald)}
-    .price{font-size:56px;font-weight:700;margin:20px 0;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .pricing-features{list-style:none;margin:30px 0;text-align:left}
-    .pricing-features li{padding:12px 0;color:var(--text-secondary);display:flex;align-items:center;gap:10px}
-    .pricing-features li::before{content:'✓';color:var(--accent-emerald);font-weight:bold;font-size:18px}
+        /* Sections */
+        .stats-section { padding: 80px 0; background: rgba(26, 31, 46, 0.5); }
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
+        .stat-card { background: var(--bg-card); padding: 35px; border-radius: 16px; border: 1px solid rgba(255,255,255,.1); text-align: center; transition: all .3s; }
+        .stat-card:hover { transform: translateY(-5px); border-color: var(--accent-cyan); }
 
-    .faq-section{padding:80px 0}
-    .faq-grid{max-width:900px;margin:0 auto}
-    .faq-item{background:var(--bg-card);border-radius:12px;border:1px solid rgba(255,255,255,.1);margin-bottom:20px;overflow:hidden;transition:all .3s}
-    .faq-item:hover{border-color:var(--accent-cyan)}
-    .faq-question{display:flex;align-items:center;gap:20px;padding:25px 30px;cursor:pointer}
-    .faq-number{min-width:40px;height:40px;background:var(--gradient);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px}
-    .faq-question h3{font-size:18px;font-weight:600;margin:0}
-    .faq-answer{padding:0 30px 25px 90px;color:var(--text-secondary);line-height:1.7}
+        .product-section { padding: 80px 0; }
+        .section-title { text-align: center; font-size: 42px; margin-bottom: 50px; font-weight: 700; }
+        .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-top: 50px; }
+        .feature-card { background: var(--bg-card); padding: 35px; border-radius: 16px; border: 1px solid rgba(255,255,255,.1); transition: all .3s; }
+        .feature-card:hover { border-color: var(--accent-emerald); transform: translateY(-5px); }
+        .feature-card h3 { font-size: 24px; margin-bottom: 15px; color: var(--accent-cyan); }
+        .feature-card p { color: var(--text-secondary); line-height: 1.7; }
 
-    .testimonials-section{padding:80px 0;background:rgba(26,31,46,.5)}
-    .testimonials-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:30px;margin-top:50px}
-    .testimonial-card{background:var(--bg-card);padding:35px;border-radius:16px;border:1px solid rgba(255,255,255,.1);transition:all .3s;position:relative}
-    .testimonial-card::before{content:'"';position:absolute;top:20px;left:25px;font-size:60px;color:var(--accent-cyan);opacity:.3;font-family:Georgia,serif}
-    .testimonial-card:hover{border-color:var(--accent-cyan);transform:translateY(-5px)}
-    .testimonial-header{display:flex;align-items:center;gap:15px;margin-bottom:20px;position:relative;z-index:1}
-    .testimonial-avatar{width:50px;height:50px;background:var(--gradient);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;color:#fff}
-    .testimonial-info h4{font-size:18px;margin-bottom:5px}
-    .testimonial-date{font-size:13px;color:var(--text-secondary)}
-    .testimonial-text{color:var(--text-secondary);line-height:1.7;font-size:15px}
+        .modes-section { padding: 80px 0; background: rgba(26, 31, 46, 0.3); }
+        .modes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; margin-top: 50px; }
+        .mode-card { background: var(--bg-card); padding: 30px; border-radius: 16px; border: 1px solid rgba(255,255,255,.1); transition: all .3s; position: relative; overflow: hidden; }
+        .mode-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--gradient); opacity: 0; transition: opacity .3s; }
+        .mode-card:hover::before { opacity: 1; }
+        .mode-card:hover { border-color: var(--accent-cyan); transform: translateX(5px); }
+        .mode-card h3 { font-size: 20px; margin-bottom: 12px; color: var(--text-primary); }
+        .mode-card p { color: var(--text-secondary); font-size: 14px; line-height: 1.6; }
 
-    /* Contact */
-    .contact-section{padding:80px 0;background:rgba(26,31,46,.3)}
-    .contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:50px}
-    .contact-card{background:var(--bg-card);padding:35px;border-radius:16px;border:1px solid rgba(255,255,255,.1);text-align:center;transition:all .3s}
-    .contact-card:hover{border-color:var(--accent-cyan);transform:translateY(-6px)}
-    .contact-card h3{font-size:18px;margin-bottom:10px}
-    .icon{width:40px;height:40px;display:inline-block;fill:currentColor;color:#fff;transition:transform .2s,color .2s,filter .2s}
-    .contact-card .icon-wrap{margin-bottom:12px}
-    .social-link{color:var(--accent-cyan);font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
-    .social-link:hover{text-decoration:un
+        .pricing-section { padding: 80px 0; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; max-width: 900px; margin: 50px auto 0; }
+        .pricing-card { background: var(--bg-card); padding: 45px; border-radius: 20px; border: 2px solid rgba(255,255,255,.1); text-align: center; transition: all .3s; position: relative; }
+        .pricing-card.featured { border-color: var(--accent-cyan); transform: scale(1.05); }
+        .pricing-card.featured::before {
+            content: 'ПОПУЛЯРНЫЙ'; position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
+            background: var(--gradient); padding: 6px 20px; border-radius: 20px; font-size: 12px; font-weight: 700;
+        }
+        .pricing-card:hover { transform: translateY(-10px); border-color: var(--accent-emerald); }
+        .price {
+            font-size: 56px; font-weight: 700; margin: 20px 0; background: var(--gradient);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .pricing-features { list-style: none; margin: 30px 0; text-align: left; }
+        .pricing-features li { padding: 12px 0; color: var(--text-secondary); display: flex; align-items: center; gap: 10px; }
+        .pricing-features li::before { content: '✓'; color: var(--accent-emerald); font-weight: bold; font-size: 18px; }
+
+        .faq-section { padding: 80px 0; }
+        .faq-grid { max-width: 900px; margin: 0 auto; }
+        .faq-item { background: var(--bg-card); border-radius: 12px; border: 1px solid rgba(255,255,255,.1); margin-bottom: 20px; overflow: hidden; transition: all .3s; }
+        .faq-item:hover { border-color: var(--accent-cyan); }
+        .faq-question { display: flex; align-items: center; gap: 20px; padding: 25px 30px; cursor: pointer; }
+        .faq-number { min-width: 40px; height: 40px; background: var(--gradient); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 18px; }
+        .faq-question h3 { font-size: 18px; font-weight: 600; margin: 0; }
+        .faq-answer { padding: 0 30px 25px 90px; color: var(--text-secondary); line-height: 1.7; }
+
+        .testimonials-section { padding: 80px 0; background: rgba(26, 31, 46, 0.5); }
+        .testimonials-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-top: 50px; }
+        .testimonial-card { background: var(--bg-card); padding: 35px; border-radius: 16px; border: 1px solid rgba(255,255,255,.1); transition: all .3s; position: relative; }
+        .testimonial-card::before { content: '"'; position: absolute; top: 20px; left: 25px; font-size: 60px; color: var(--accent-cyan); opacity: 0.3; font-family: Georgia, serif; }
+        .testimonial-card:hover { border-color: var(--accent-cyan); transform: translateY(-5px); }
+        .testimonial-header { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; position: relative; z-index: 1; }
+        .testimonial-avatar { width: 50px; height: 50px; background: var(--gradient); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 700; color: #fff; }
+        .testimonial-info h4 { font-size: 18px; margin-bottom: 5px; }
+        .testimonial-date { font-size: 13px; color: var(--text-secondary); }
+        .testimonial-text { color: var(--text-secondary); line-height: 1.7; font-size: 15px; }
+
+        /* Contact */
+        .contact-section { padding: 80px 0; background: rgba(26, 31, 46, 0.3); }
+        .contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 50px; }
+        .contact-card {
+            background: var(--bg-card); padding: 35px; border-radius: 16px; border: 1px solid rgba(255,255,255,.1);
+            text-align: center; transition: all .3s;
+        }
+        .contact-card:hover { border-color: var(--accent-cyan); transform: translateY(-6px); }
+        .contact-card h3 { font-size: 18px; margin-bottom: 10px; }
+
+        /* PRO social style */
+        .icon{ width:40px; height:40px; display:inline-block; fill:currentColor; color:#fff;
+               transition:transform .2s ease, color .2s ease, filter .2s ease; }
+        .contact-card .icon-wrap{ margin-bottom:12px; }
+        .social-link{ color:var(--accent-cyan); font-weight:600; text-decoration:none; display:inline-flex; align-items:center; gap:8px; }
+        .social-link:hover{ text-decoration:underline; }
+        .contact-card:hover .icon{ transform:translateY(-2px); }
+        .contact-card.brand-telegram:hover{ border-color:var(--brand-telegram); box-shadow:0 10px 30px rgba(38,165,228,.25); }
+        .contact-card.brand-telegram:hover .icon{ color:var(--brand-telegram); }
+        .contact-card.brand-instagram:hover{ border-color:var(--brand-instagram); box-shadow:0 10px 30px rgba(228,64,95,.25); }
+        .contact-card.brand-instagram:hover .icon{ color:var(--brand-instagram); }
+        .contact-card.brand-tiktok:hover{
+            border-color:var(--brand-tiktok-cyan);
+            box-shadow:0 0 0 1px rgba(37,244,238,.35) inset,0 12px 36px rgba(37,244,238,.15),0 18px 48px rgba(254,44,85,.12);
+        }
+        .contact-card.brand-tiktok:hover .icon{
+            color:#fff;
+            filter: drop-shadow(0 0 6px var(--brand-tiktok-cyan)) drop-shadow(0 0 10px var(--brand-tiktok-pink));
+        }
+        .contact-card.brand-viber:hover{ border-color:var(--brand-viber); box-shadow:0 10px 30px rgba(115,96,242,.22); }
+        .contact-card.brand-viber:hover .icon{ color:var(--brand-viber); }
+        .contact-card.brand-whatsapp:hover{ border-color:var(--brand-whatsapp); box-shadow:0 10px 30px rgba(37,211,102,.22); }
+        .contact-card.brand-whatsapp:hover .icon{ color:var(--brand-whatsapp); }
+
+        /* Footer */
+        footer { padding: 40px 0; border-top: 1px solid rgba(255,255,255,.1); text-align: center; color: var(--text-secondary); }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero-content { grid-template-columns: 1fr; gap: 40px; }
+            .hero-text h1 { font-size: 42px; }
+            .stats-grid, .product-grid, .modes-grid, .testimonials-grid, .contact-grid { grid-template-columns: 1fr; }
+            .pricing-grid { grid-template-columns: 1fr; }
+            .pricing-card.featured { transform: none; }
+            .cta-buttons { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <!-- NEW LOGO: human with raised hands + gear halo -->
+                    <svg viewBox="0 0 64 64" role="img" aria-label="KRONON TECH logo">
+                        <!-- base line -->
+                        <line x1="12" y1="58" x2="52" y2="58" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+                        <!-- gear halo around head -->
+                        <circle cx="32" cy="20" r="10" fill="none" stroke="#fff" stroke-width="2.5"/>
+                        <g stroke="#fff" stroke-width="2.5" stroke-linecap="round">
+                            <line x1="32" y1="6"  x2="32" y2="9"/>
+                            <line x1="44" y1="10" x2="41.5" y2="12.5"/>
+                            <line x1="50" y1="20" x2="47" y2="20"/>
+                            <line x1="44" y1="30" x2="41.5" y2="27.5"/>
+                            <line x1="32" y1="34" x2="32" y2="31"/>
+                            <line x1="20" y1="30" x2="22.5" y2="27.5"/>
+                            <line x1="14" y1="20" x2="17" y2="20"/>
+                            <line x1="20" y1="10" x2="22.5" y2="12.5"/>
+                        </g>
+                        <!-- subtle check inside halo -->
+                        <path d="M27.5 20.5l3.5 3.5 7-7" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <!-- head -->
+                        <circle cx="32" cy="24" r="3.2" fill="#fff"/>
+                        <!-- arms up (Y) -->
+                        <path d="M18 32 L32 24 L46 32" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                        <!-- body & legs -->
+                        <path d="M32 24 V46" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+                        <path d="M24 46 H40" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+                    </svg>
+                    <span class="logo-text">KRONON TECH</span>
+                </div>
+                <div class="cta-buttons">
+                    <a href="#trial" class="btn btn-primary">Попробовать бесплатно</a>
+                    <a href="#contact" class="btn btn-secondary">Связаться</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="trial-badge">🎁 1 месяц бесплатного использования</div>
+                    <h1>Автоматическая торговля на FOREX с MULTITRADE</h1>
+                    <p>Профессиональный торговый робот с тремя трендово-сеточными стратегиями. Работает 24/5 без вашего участия.</p>
+                    <div class="cta-buttons">
+                        <a href="#pricing" class="btn btn-primary">Начать торговлю</a>
+                        <a href="https://www.myfxbook.com/ru/members/Robotic_Systems/mt4-35076999/11031977" target="_blank" class="btn btn-secondary">Статистика в реальном времени</a>
+                    </div>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-label">Общая доходность</div>
+                        <div class="stat-value">+132.62%</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Абс. прирост</div>
+                        <div class="stat-value">+35.16%</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Ежемесячно</div>
+                        <div class="stat-value">11.05%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card"><div class="stat-value">24/5</div><div class="stat-label">Автоматическая работа</div></div>
+                <div class="stat-card"><div class="stat-value">10+</div><div class="stat-label">Валютных пар</div></div>
+                <div class="stat-card"><div class="stat-value">5</div><div class="stat-label">Режимов торговли</div></div>
+                <div class="stat-card"><div class="stat-value">2019</div><div class="stat-label">Год основания</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Section -->
+    <section class="product-section" id="product">
+        <div class="container">
+            <h2 class="section-title">Что такое MULTITRADE?</h2>
+            <p style="text-align:center;color:var(--text-secondary);max-width:800px;margin:0 auto;font-size:18px;">
+                MULTITRADE — это передовой торговый робот, использующий три независимые трендово-сеточные стратегии с различными параметрами для распределения рисков и максимизации прибыли.
+            </p>
+            <div class="product-grid">
+                <div class="feature-card"><h3>Авторская система определения тренда</h3><p>Робот автоматически анализирует рыночные настроения и волатильность торгуемых пар, адаптируя стратегии под текущие условия рынка.</p></div>
+                <div class="feature-card"><h3>Три независимые стратегии</h3><p>Распределение рисков по торговым объёмам между тремя стратегиями с различными параметрами обеспечивает стабильность результатов.</p></div>
+                <div class="feature-card"><h3>Расширенная защита капитала</h3><p>Автоматическая фиксация убытков, система приостановки позиций при просадке, защитные трейлинг-стопы в критических стратегиях.</p></div>
+                <div class="feature-card"><h3>Гибкая настройка рисков</h3><p>Настраиваемый коэффициент риска, эквити-стопы по паре и счёту, динамические лоты усреднения для опытных трейдеров.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modes Section -->
+    <section class="modes-section">
+        <div class="container">
+            <h2 class="section-title">Режимы торговли</h2>
+            <p style="text-align:center;color:var(--text-secondary);max-width:800px;margin:0 auto 50px;font-size:18px;">
+                Выберите оптимальный режим работы робота под ваш стиль торговли и рыночные условия
+            </p>
+            <div class="modes-grid">
+                <div class="mode-card"><h3>🎯 Стандарт</h3><p>Режим из 3 стратегий. Входит по направлению тренда и в точках разворотов. Использует анализ волатильности для адаптации параметров.</p></div>
+                <div class="mode-card"><h3>⚡ Агрессивно-трендовый</h3><p>Режим из 2 стратегий в 3 сетки. Рассчитан на резкие кризисные тренды с короткими откатами. Входит по направлению тренда.</p></div>
+                <div class="mode-card"><h3>🛡️ Средняя консолидация</h3><p>Рассчитывает диапазон консолидации и фильтрует входы. Минимальное количество сделок, сниженные риски, умеренная доходность.</p></div>
+                <div class="mode-card"><h3>📈 Усиленный тренд</h3><p>Вход на сформированном сигнале краткосрочного тренда. Устойчивость выше стандарта, доходность выше средней консолидации.</p></div>
+                <div class="mode-card"><h3>🎨 Трио-классика</h3><p>Классический режим в 3 сетки на 2 стратегиях. Первый вход по индикаторам, остальные ордера при прохождении расстояния.</p></div>
+                <div class="mode-card"><h3>⚙️ Пользовательский</h3><p>Настройте собственные параметры риска, просадок, сигналов и фильтров для создания уникальной торговой стратегии.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section" id="pricing">
+        <div class="container">
+            <h2 class="section-title">Тарифы</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Самостоятельная настройка</h3>
+                    <div class="price">$750</div>
+                    <ul class="pricing-features">
+                        <li>MULTITRADE торговый робот</li><li>Видео-гайд по установке</li><li>Все 5 режимов торговли</li>
+                        <li>10+ валютных пар</li><li>Техническая поддержка</li><li>1 месяц бесплатно</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-secondary">Выбрать тариф</a>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <h3>Настройка под ключ</h3>
+                    <div class="price">$950</div>
+                    <ul class="pricing-features">
+                        <li>Всё из предыдущего тарифа</li><li>Полная настройка робота</li><li>Индивидуальная консультация</li>
+                        <li>Оптимизация под ваш счёт</li><li>Приоритетная поддержка</li><li>1 месяц бесплатно</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary">Выбрать тариф</a>
+                </div>
+            </div>
+            
+            <div id="trial" style="margin-top:60px;text-align:center;padding:50px;background:var(--bg-card);border-radius:20px;border:2px solid var(--accent-emerald);">
+                <h3 style="font-size:32px;margin-bottom:20px;">🎁 Бесплатный пробный период</h3>
+                <p style="color:var(--text-secondary);font-size:18px;max-width:700px;margin:0 auto 30px;">
+                    Получите полный доступ к MULTITRADE на 1 месяц абсолютно бесплатно. Проверьте эффективность робота на своём счёте без каких-либо обязательств.
+                </p>
+                <a href="#contact" class="btn btn-primary">Активировать пробный период</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section" id="faq">
+        <div class="container">
+            <h2 class="section-title">Часто задаваемые вопросы</h2>
+            <p style="text-align:center;color:var(--text-secondary);max-width:800px;margin:0 auto 50px;font-size:18px;">Ответы на самые популярные вопросы о MULTITRADE</p>
+            <div class="faq-grid">
+                <div class="faq-item"><div class="faq-question"><span class="faq-number">1</span><h3>Что делает торговый робот MultiTrade?</h3></div><div class="faq-answer">MultiTrade — это автоматизированный торговый советник для MetaTrader 4, который использует три трендово-сеточные стратегии. Он анализирует рынок, определяет тренды, учитывает волатильность и открывает сделки без участия человека.</div></div>
+                <div class="faq-item"><div class="faq-question"><span class="faq-number">2</span><h3>На каких валютных парах робот работает лучше всего?</h3></div><div class="faq-answer">Рекомендованные пары: EURCAD, USDCAD, USDNZD, EURNZD, GBPUSD, EURGBP, USDCHF, EURCHF, AUDUSD, NZDCAD. Таймфрейм — H1 (один час).</div></div>
+                <div class="faq-item"><div class="faq-question"><span class="faq-number">3</span><h3>Сколько можно заработать?</h3></div><div class="faq-answer">Доходность зависит от выбранного режима торговли и уровня риска. В среднем при стандартных настройках робот показывает 60–100% годовых при умеренных просадках.</div></div>
+                <div class="faq-item"><div class="faq-question"><span class="faq-number">4</span><h3>Какие режимы торговли доступны?</h3></div><div class="faq-answer">Робот предлагает 5 режимов:<br><br><strong>• Стандарт</strong> — сбалансированный, работает по тренду и точкам разворота.<br><strong>• Трио-классика</strong> — более консервативный, классический вариант сеточной торговли.<br><strong>• Агрессивно-трендовый</strong> — для сильных трендов и высоких движений.<br><strong>• Средняя консолидация</strong> — низкорисковый, когда рынок во флэте.<br><strong>• Усиленный тренд</strong> — вариант между стандартом и консолидацией, оптимален по соотношению риск/доход.</div></div>
+                <div class="faq-item"><div class="faq-question"><span class="faq-number">5</span><h3>Можно ли регулировать уровень риска?</h3></div><div class="faq-answer">Да. Через параметр Risk multiplier можно увеличивать или уменьшать стартовый лот, подстраивая стратегию под свой риск-профиль. Также есть настройки эквити-стопа по паре и по счёту.</div></div>
+                <div class="faq-item"><div class="faq-question"><span class="faq-number">6</span><h3>Как робот защищает депозит?</h3></div><div class="faq-answer">Автоматическая фиксация убытков, приостановка стратегий при снижении баланса, защитные тралы, возможность вручную остановить торговлю и закрыть все позиции.</div></div>
+                <div class="faq-item"><div class="faq-question"><span class="faq-number">7</span><h3>Что если рынок резко пойдёт против робота?</h3></div><div class="faq-answer">Фильтры волатильности и система приостановки стратегий минимизируют потери. При достижении лимита убытка позиции закрываются, торговля временно приостанавливается.</div></div>
+                <div class="faq-item"><div class="faq-question"><span class="faq-number">8</span><h3>Можно ли использовать других советников?</h3></div><div class="faq-answer">Да, с уникальными Magic-number для исключения конфликтов.</div></div>
+                <div class="faq-item"><div class="faq-question"><span class="faq-number">9</span><h3>Что такое «режим сушки»?</h3></div><div class="faq-answer">Stop trading mode запрещает новые сделки, позволяя текущим закрыться по алгоритму.</div></div>
+                <div class="faq-item"><div class="faq-question"><span class="faq-number">10</span><h3>Что нужно для старта?</h3></div><div class="faq-answer">Брокер (напр. RoboForex), депозит от $200, VPS ~ $8/мес, установка робота (возможна «под ключ»).</div></div>
+                <div class="faq-item"><div class="faq-question"><span class="faq-number">11</span><h3>Несколько стратегий на одном счёте?</h3></div><div class="faq-answer">Поддерживается одновременная работа нескольких стратегий и сеток.</div></div>
+                <div class="faq-item"><div class="faq-question"><span class="faq-number">12</span><h3>Торговля остановилась?</h3></div><div class="faq-answer">Нажмите «Возобновить торговлю» на графике или перезапустите советник.</div></div>
+                <div class="faq-item"><div class="faq-question"><span class="faq-number">13</span><h3>Можно ли менять параметры?</h3></div><div class="faq-answer">Да, доступны блоки риск/сигналы/просадки/интерфейс. Новичкам — стандартные сет-файлы.</div></div>
+                <div class="faq-item"><div class="faq-question"><span class="faq-number">14</span><h3>Нужно ли постоянно следить?</h3></div><div class="faq-answer">Нет. Раз в неделю проверьте отчёт и работу VPS/терминала.</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 class="section-title">Отзывы клиентов</h2>
+            <p style="text-align:center;color:var(--text-secondary);max-width:800px;margin:0 auto 50px;font-size:18px;">
+                Реальные истории людей, которые уже используют MULTITRADE
+            </p>
+            <div class="testimonials-grid">
+                <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">О</div><div class="testimonial-info"><h4>Ольга</h4><div class="testimonial-date">30 сентября 2024</div></div></div><div class="testimonial-text">Я очень оценила вашего робота, потому что он спокойный и с ним нет проблем. Вы всё настроили, и я больше ничего не делаю — только захожу и радуюсь прибыли 😊</div></div>
+                <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">О</div><div class="testimonial-info"><h4>Олеся</h4><div class="testimonial-date">30 сентября 2024</div></div></div><div class="testimonial-text">Пользуюсь роботом почти год, всё понятно и прозрачно. Советую и буду расширяться дальше👌</div></div>
+                <div class="testimonial-card"><div class="testimonial-header"><div class="testimonial-avatar">А</div><div class="testimonial-info"><h4>Александр</h4><div class="testimonial-date">Недавно</div></div></div><div class="testimonial-text">Начинал с небольшой суммы, тестировал. Потом докупил и увеличил депозит. Результатами доволен.</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Связаться с нами</h2>
+
+            <div class="contact-grid">
+                <!-- WhatsApp -->
+                <div class="contact-card brand-whatsapp">
+                    <div class="icon-wrap" aria-hidden="true">
+                        <!-- WhatsApp -->
+                        <svg class="icon" viewBox="0 0 24 24"><path d="M20.52 3.48A11.84 11.84 0 0 0 12.04 0C5.47.03.16 5.35.19 11.92A11.79 11.79 0 0 0 2.7 19.2L1.5 24l4.93-1.26a11.86 11.86 0 0 0 5.6 1.43h.01c6.57-.03 11.88-5.35 11.86-11.93a11.86 11.86 0 0 0-3.38-8.76ZM12 21.35c-1.86 0-3.69-.5-5.28-1.46l-.38-.22-2.92.75.77-2.85-.25-.4A9.32 9.32 0 0 1 2.65 12C2.64 7.12 6.69 3.07 11.57 3.05h.02C16.44 3.03 20.5 7.08 20.5 11.96S16.44 21.35 12 21.35Zm5.18-5.57c-.28-.14-1.66-.82-1.92-.91-.26-.1-.45-.14-.64.14-.19.27-.74.91-.9 1.1-.17.18-.33.21-.61.07-.28-.14-1.19-.44-2.26-1.41-.83-.74-1.39-1.66-1.56-1.94-.16-.27-.02-.42.12-.56.12-.12.28-.33.42-.5.14-.17.19-.28.28-.47.09-.18.05-.35-.02-.5-.07-.14-.64-1.54-.88-2.11-.23-.55-.47-.47-.64-.48l-.55-.01c-.18 0-.
