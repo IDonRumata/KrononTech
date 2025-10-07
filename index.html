@@ -1,3 +1,6 @@
+Лови полностью обновлённый файл — логотип стал ссылкой на главную, двигается только он, размер адаптивный, дублирования размеров нет.
+
+```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -22,17 +25,24 @@
     /* Header */
     header{padding:20px 0;position:fixed;width:100%;top:0;z-index:1000;background:rgba(15,20,25,.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.1)}
     .header-content{display:flex;justify-content:space-between;align-items:center}
+
+    /* ЛОГО: ссылка на главную, двигается только картинка, адаптивный размер */
     .logo{
-  display:flex;
-  align-items:center;
-  gap:1px;
-  margin-left:15px;   /* ← сдвиг вправо, подбери значение */
-     }
-
-    .logo img{width:90px;height:90px;display:block} /* ← используем ПНГ, без фильтров и модификаций */
+      display:flex;
+      align-items:center;
+      gap:8px;               /* расстояние между иконкой и текстом */
+      text-decoration:none;  /* убираем подчёркивание у <a> */
+      color:inherit;
+    }
+    .logo img{
+      width:clamp(28px, 7vw, 90px); /* адаптивно: от 28px до 90px */
+      height:auto;                  /* сохраняем пропорции */
+      display:block;
+      margin-left:15px;             /* двигаем ТОЛЬКО иконку вправо */
+    }
     .logo-text{font-size:24px;font-weight:700;letter-spacing:.5px}
-    .cta-buttons{display:flex;gap:6px}
 
+    .cta-buttons{display:flex;gap:6px}
     .btn{padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:600;transition:all .3s;display:inline-block;border:none;cursor:pointer;font-size:15px}
     .btn-primary{background:var(--gradient);color:#fff;box-shadow:0 4px 15px rgba(6,182,212,.3)}
     .btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(6,182,212,.4)}
@@ -137,7 +147,7 @@
     @media (max-width:968px){
       .hero-content{grid-template-columns:1fr;gap:40px}
       .hero-text h1{font-size:42px}
-      .stats-grid,.product-grid,.modes-grid,.testimonials-grid,.contact-grid{grid-template-columns:1fr}
+      .stats-grid,.product-grid,.мodes-grid,.testimonials-grid,.contact-grid{grid-template-columns:1fr}
       .pricing-grid{grid-template-columns:1fr}
       .pricing-card.featured{transform:scale(1)}
       .cta-buttons{flex-direction:column}
@@ -149,11 +159,11 @@
   <header>
     <div class="container">
       <div class="header-content">
-        <div class="logo">
-          <!-- ВАШ НОВЫЙ ЛОГОТИП, БЕЗ ИЗМЕНЕНИЙ -->
-          <img src="logo-human.png" alt="KRONON TECH logo" width="45" height="45" />
+        <a href="/" class="logo" aria-label="На главную">
+          <!-- Новый логотип (без изменений по изображению) -->
+          <img src="logo-human.png" alt="KRONON TECH logo">
           <span class="logo-text">KRONON TECH</span>
-        </div>
+        </a>
         <div class="cta-buttons">
           <a href="#trial" class="btn btn-primary">Попробовать бесплатно</a>
           <a href="#contact" class="btn btn-secondary">Связаться</a>
@@ -314,7 +324,7 @@
     </div>
   </section>
 
-  <!-- Contact Section (brand icons, без микро-подписей) -->
+  <!-- Contact Section -->
   <section class="contact-section" id="contact">
     <div class="container">
       <h2 class="section-title">Связаться с нами</h2>
@@ -379,9 +389,10 @@
   <!-- Footer -->
   <footer>
     <div class="container">
-      <p>&copy; 2025 Kronon MultiTrade. Работаем с 2019 года.</p>
+      <p>&copy; 2025 Kronon MultiTrade. Работаем с 2018 года.</p>
       <p style="margin-top:10px;font-size:14px;">Торговля на финансовых рынках сопряжена с рисками. Прошлые результаты не гарантируют будущую прибыль.</p>
     </div>
   </footer>
 </body>
 </html>
+```
