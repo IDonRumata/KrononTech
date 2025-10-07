@@ -22,7 +22,13 @@
     /* Header */
     header{padding:20px 0;position:fixed;width:100%;top:0;z-index:1000;background:rgba(15,20,25,.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.1)}
     .header-content{display:flex;justify-content:space-between;align-items:center}
-    .logo{display:flex;align-items:center;gap:15px}
+    .logo{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  margin-left:45px;   /* ← сдвиг вправо, подбери значение */
+}
+
     .logo img{width:90px;height:90px;display:block} /* ← используем ПНГ, без фильтров и модификаций */
     .logo-text{font-size:24px;font-weight:700;letter-spacing:.5px}
     .cta-buttons{display:flex;gap:15px}
