@@ -7,7 +7,243 @@
   <title>Kronon MultiTrade — робот Форекс нового поколения</title>
   <!-- Schema.org для отзывов -->
   <script type="application/ld+json">
+  {<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Торговый робот MULTITRADE: автоматическая торговля на Форекс, мультивалютные стратегии, сопровождение и обучение. Пробный месяц бесплатно!">
+  <title>Kronon MultiTrade — робот Форекс нового поколения</title>
+  <!-- Schema.org для отзывов -->
+  <script type="application/ld+json">
   {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "MultiTrade",
+    "description": "Автоматическая торговля на Форекс. 5 стратегий. Сопровождение и обучение.",
+    "review": [
+      {"@type": "Review", "author": {"@type": "Person","name": "Ольга"}, "datePublished": "2024-09-30", "reviewBody": "Я очень оценила вашего робота...", "reviewRating": {"@type": "Rating", "ratingValue": "5"}}
+      // другие отзывы
+    ]
+  }
+  </script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap">
+  <style>
+    :root {
+      --bg-light:#f5fafc; --text-light:#222; --bg-dark:#12171e; --text-dark:#f5fafc;
+      --accent-cyan:#06b6d4; --accent-emerald:#10b981; --gradient:linear-gradient(120deg,#06b6d4 10%,#10b981 90%);
+    }
+    body {
+      font-family: 'Roboto', Arial, sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-dark);
+      transition: background .3s,color .3s;
+    }
+    body.light-mode {
+      background: var(--bg-light);
+      color: var(--text-light);
+    }
+    header {
+      background: rgba(18,23,30,0.92);
+      position: fixed; width: 100%; top:0; box-shadow:0 4px 20px rgba(6,182,212,.06);
+      z-index: 10;
+    }
+    .container {max-width:1200px; margin:auto; padding:0 20px;}
+    .header-content {display:flex;justify-content:space-between;align-items:center;padding:24px 0;}
+    .logo img {width:60px; height:60px;}
+    .logo-text {font-size:28px; font-weight:700; margin-left:10px; letter-spacing:1px;}
+    .theme-toggle {
+      border:none; background:var(--gradient); color:#fff; border-radius:40px; padding:12px 18px; font-size:14px; cursor:pointer; margin-left:20px; transition:background .2s;}
+    main {padding-top:100px;}
+    section {padding:80px 0;}
+    .hero {display:flex;align-items:center;gap:70px;justify-content:space-between;}
+    .hero-img {max-width:380px; border-radius:24px;box-shadow:0 8px 32px rgba(16,185,129,.2);}
+    .hero-content h1{
+      font-size:60px; font-weight:900;background:var(--gradient);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; text-fill-color:transparent;
+      text-shadow:0 2px 12px rgba(16,185,129,.15);
+      margin-bottom:28px;
+      animation:fadeInUp .7s;
+    }
+    .hero-content p {font-size:22px;color:var(--accent-cyan);}
+    .trial-badge {background:var(--accent-emerald);display:inline-block;padding:12px 28px;border-radius:24px;font-size:18px;color:#fff;font-weight:700;margin-bottom:24px;}
+    .cta-group {display:flex;gap:24px;margin-top:34px;}
+    .btn {padding:14px 36px; border-radius:8px; font-weight:700; font-size:16px; text-decoration:none; transition:all .2s; border:none;}
+    .btn-primary {background:var(--gradient);color:#fff;}
+    .btn-primary:hover {background:var(--accent-cyan);}
+    .btn-secondary {background:#fff;color:var(--accent-cyan);border:2px solid var(--accent-cyan);}
+    .btn-secondary:hover{background:var(--accent-cyan);color:#fff;}
+    /* Анимации появления */
+    .fade-in {opacity:0;transform:translateY(30px);}
+    .fade-in.visible {opacity:1;transform:translateY(0);transition:opacity .6s,transform .7s;}
+    /* Секции, карточки - минимализм */
+    .card {background:rgba(26,31,46,.91); color:var(--text-dark); padding:32px; border-radius:20px; box-shadow:0 10px 28px rgba(16,185,129,.12);}
+    .section-title {font-size:40px; text-align:center; font-weight:700; margin-bottom:32px;}
+    .features-grid {display:grid;grid-template-columns:repeat(2,1fr);gap:36px;}
+    .feature-card {background:var(--bg-dark); color:#fff; border-radius:16px; padding:34px; transition:transform .2s; border:1.5px solid rgba(6,182,212,.14);}
+    .feature-card:hover {transform:scale(1.04);}
+    /* Testimonials */
+    .testimonials-grid {display:grid;grid-template-columns:1fr 1fr;gap:26px;}
+    .testimonial-card {background:var(--bg-dark); color:#fff; padding:32px; border-radius:16px; border:1.5px solid rgba(16,185,129,.16);}
+    .testimonial-header {display:flex;align-items:center;gap:16px;}
+    .testimonial-avatar {width:54px;height:54px;background:var(--gradient);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;color:#fff;}
+    /* FAQ accordion */
+    .faq-list{max-width:700px;margin:auto}
+    .faq-item{background:var(--bg-dark);border-radius:12px;margin-bottom:18px;box-shadow:0 6px 18px rgba(6,182,212,.09);overflow:hidden;}
+    .faq-question{padding:22px 32px;cursor:pointer;font-size:18px;font-weight:700}
+    .faq-answer{padding:0 32px 24px 32px;color:var(--accent-cyan);font-size:16px;display:none}
+    .faq-item.open .faq-answer{display:block}
+    footer {padding:50px 0;text-align:center;color:var(--accent-cyan);font-size:18px;background:rgba(16,185,129,.08);}
+    /* Адаптив */
+    @media (max-width:900px){
+      .hero{flex-direction:column;gap:40px;}
+      .features-grid, .testimonials-grid {grid-template-columns:1fr;}
+      .hero-content h1{font-size:38px;}
+    }
+    @keyframes fadeInUp {from{opacity:0;transform:translateY(60px);}to{opacity:1;transform:translateY(0);}}
+  </style>
+</head>
+<body>
+<header>
+  <div class="container header-content">
+    <div class="logo">
+      <img src="logo-human.webp" alt="Логотип робота MULTITRADE" loading="lazy">
+      <span class="logo-text">KRONON TECH</span>
+    </div>
+    <button class="theme-toggle" id="themeBtn">🌙/☀️</button>
+    <a href="#contact" class="btn btn-primary">Связаться</a>
+  </div>
+</header>
+
+<main>
+  <!-- Hero -->
+  <section class="hero fade-in">
+    <div class="hero-content">
+      <div>
+        <div class="trial-badge">🎁 1 месяц бесплатно</div>
+        <h1>MultiTrade: твой личный робот для автоматической торговли!</h1>
+        <p>5 стратегий · 10+ валютных пар · Полное обучение · Сопровождение · Пробный месяц</p>
+        <div class="cta-group">
+          <a href="#pricing" class="btn btn-primary">Начать бесплатно</a>
+          <a href="https://www.myfxbook.com/ru/members/Robotic_Systems/mt4-35076999/11031977" target="_blank" class="btn btn-secondary">Статистика</a>
+        </div>
+      </div>
+      <img class="hero-img" src="robot-showcase.webp" alt="Визуализация робота MultiTrade" loading="lazy">
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="fade-in">
+    <h2 class="section-title">Почему MultiTrade?</h2>
+    <div class="container features-grid">
+      <div class="feature-card"><h3>Уникальные стратегии</h3><p>5 трендово-сеточных режимов: выбирай подходящий для твоего риска и целей.</p></div>
+      <div class="feature-card"><h3>Мультивалютность</h3><p>Работает с более чем 10 валютными парами. Настроен для EURCAD, USDCAD, USDNZD и прочих.</p></div>
+      <div class="feature-card"><h3>Защита капитала</h3><p>Эквити-стопы, тралы, ограничения убытков и гибкая настройка рисков.</p></div>
+      <div class="feature-card"><h3>Сопровождение и помощь</h3><p>Видео-гайд, поддержка в мессенджерах и индивидуальные консультации.</p></div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="fade-in">
+    <h2 class="section-title">Реальные отзывы</h2>
+    <div class="container testimonials-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-header">
+          <div class="testimonial-avatar">О</div>
+          <div>
+            <strong>Ольга</strong><br>
+            <span>Сентябрь 2024</span>
+          </div>
+        </div>
+        <div>Я очень оценила вашего робота: настроили раз и забыла — просто вывожу прибыль.</div>
+      </div>
+      <!-- Добавь новые отзывы с фото/скринами из myfxbook! -->
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section>
+    <h2 class="section-title">FAQ</h2>
+    <div class="container faq-list">
+      <div class="faq-item">
+        <div class="faq-question">Что делает MultiTrade?</div>
+        <div class="faq-answer">Автоматически анализирует рынок, определяет тренды, открывает сделки на 10+ валютных парах, использует 5 стратегий.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Какой нужен депозит?</div>
+        <div class="faq-answer">Минимальный депозит $200 + VPS для стабильной работы ~ 8$/мес.</div>
+      </div>
+      <!-- Добавь новые вопросы -->
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="fade-in" id="contact">
+    <h2 class="section-title">Связаться и купить</h2>
+    <div class="container features-grid">
+      <div class="feature-card">
+        <h3>Telegram</h3>
+        <a href="https://t.me/roboowner" target="_blank">@roboowner</a>
+      </div>
+      <div class="feature-card">
+        <h3>WhatsApp</h3>
+        <a href="https://wa.me/375333032571" target="_blank">+375 33 303 25 71</a>
+      </div>
+      <div class="feature-card">
+        <h3>Email</h3>
+        <a href="mailto:marozandreyinvest@gmail.com">marozandreyinvest@gmail.com</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div>© 2025 Kronon MultiTrade. Работаем с 2018 года.<br>Прошлые результаты не гарантируют будущую прибыль.</div>
+</footer>
+<!-- Анимации появления при скролле и открытие FAQ -->
+<script>
+  // Смена темы
+  const themeBtn = document.getElementById('themeBtn');
+  themeBtn.onclick = () => {
+    document.body.classList.toggle('light-mode');
+    localStorage.setItem('theme', document.body.classList.contains('light-mode')?'light':'dark');
+    themeBtn.textContent = document.body.classList.contains('light-mode') ? '☀️' : '🌙';
+  }
+  if(localStorage.getItem('theme')==='light'){
+    document.body.classList.add('light-mode');
+    themeBtn.textContent = '☀️';
+  }
+  // Анимации fade-in
+  const fadeEls = document.querySelectorAll('.fade-in');
+  const fadeInOnScroll = (entries) => {
+    entries.forEach(entry =>
+      entry.isIntersecting && entry.target.classList.add('visible')
+    );
+  };
+  const observer = new IntersectionObserver(fadeInOnScroll, {threshold:0.2});
+  fadeEls.forEach(el => observer.observe(el));
+  // FAQ accordion
+  document.querySelectorAll('.faq-question').forEach(q=>{
+    q.onclick=()=>q.parentNode.classList.toggle('open');
+  });
+</script>
+</body>
+</html>
+```
+
+/*
+**Ключевые преимущества:**
+- Светлая/тёмная тема (переключатель)
+- Микроразметка и meta-description
+- Анимации появления при скролле
+- Современный минималистичный дизайн без перегруженности
+- FAQ-аккордеон, легко дополняемый
+- Контакты – большие карточки, читаемые на любом устройстве
+- Легко интегрировать чат-бота или голосовой поиск
+- Загрузка картинок и логотипов в формате .webp
+- Грамотная адаптация под мобильные устройства
+
+**Дополни шаблон под твои задачи контентом, скринами и отзывами. Если нужен код для chat-бота, калькулятора прибыли, интеграции myfxbook — дай знать, всё допишу!*/
     "@context": "https://schema.org",
     "@type": "Product",
     "name": "MultiTrade",
