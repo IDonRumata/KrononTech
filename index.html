@@ -761,21 +761,21 @@
             <form id="contactForm" style="display: flex; flex-direction: column; gap: 20px;">
                 <div style="display: flex; flex-direction: column; gap: 6px;">
                     <label style="font-weight: 600; color: #1a1a1a; font-size: 14px;">Ваше имя</label>
-                    <input type="text" placeholder="Введите ваше имя" required style="padding: 14px 16px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 15px; transition: all 0.3s ease; background: white; color: #1a1a1a; font-family: inherit;">
+                    <input type="text" id="formName" placeholder="Введите ваше имя" required style="padding: 14px 16px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 15px; transition: all 0.3s ease; background: white; color: #1a1a1a; font-family: inherit;">
                 </div>
                 <div style="display: flex; flex-direction: column; gap: 6px;">
                     <label style="font-weight: 600; color: #1a1a1a; font-size: 14px;">Email</label>
-                    <input type="email" placeholder="your@email.com" required style="padding: 14px 16px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 15px; transition: all 0.3s ease; background: white; color: #1a1a1a; font-family: inherit;">
+                    <input type="email" id="formEmail" placeholder="your@email.com" required style="padding: 14px 16px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 15px; transition: all 0.3s ease; background: white; color: #1a1a1a; font-family: inherit;">
                 </div>
                 <div style="display: flex; flex-direction: column; gap: 6px;">
                     <label style="font-weight: 600; color: #1a1a1a; font-size: 14px;">Телефон (опционально)</label>
-                    <input type="tel" placeholder="+XXX XX XXX XX XX" style="padding: 14px 16px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 15px; transition: all 0.3s ease; background: white; color: #1a1a1a; font-family: inherit;">
+                    <input type="tel" id="formPhone" placeholder="+375 33 XXX XX XX" style="padding: 14px 16px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 15px; transition: all 0.3s ease; background: white; color: #1a1a1a; font-family: inherit;">
                 </div>
                 <div style="display: flex; flex-direction: column; gap: 6px;">
                     <label style="font-weight: 600; color: #1a1a1a; font-size: 14px;">Сообщение</label>
-                    <textarea placeholder="Напишите ваше сообщение..." required style="padding: 14px 16px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 15px; min-height: 140px; transition: all 0.3s ease; background: white; color: #1a1a1a; font-family: inherit; resize: vertical;"></textarea>
+                    <textarea id="formMessage" placeholder="Напишите ваше сообщение..." required style="padding: 14px 16px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 15px; min-height: 140px; transition: all 0.3s ease; background: white; color: #1a1a1a; font-family: inherit; resize: vertical;"></textarea>
                 </div>
-                <button type="submit" style="background: #0F1419; color: white; padding: 16px 24px; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 16px; transition: all 0.3s ease; letter-spacing: 0.5px; margin-top: 15px; text-transform: uppercase;">✉ Отправить заявку</button>
+                <button type="submit" id="submitBtn" style="background: #0F1419; color: white; padding: 16px 24px; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 16px; transition: all 0.3s ease; letter-spacing: 0.5px; margin-top: 15px; text-transform: uppercase;">✉ Отправить заявку</button>
             </form>
         </div>
     </div>
@@ -914,8 +914,8 @@ const dataRu = {
         { name: 'Настройка под ключ', price: 950, features: ['Всё из предыдущего', 'Полная настройка', 'Консультация', 'Оптимизация', 'Приоритет', '1 месяц бесплатно'], popular: true }
     ],
     testimonials: [
-        { name: 'Ольга', date: '30 октября 2024', text: 'Я очень оценила вашего робота, потому что он спокойный. Вы всё настроили — я только захожу и радуюсь прибыли 😊', avatar: 'O' },
-        { name: 'Олеся', date: '12 марта 2025', text: 'Пользуюсь роботом почти год, всё понятно и прозрачно. Советую и буду расширяться дальше👌', avatar: 'O' },
+        { name: 'Ольга', date: '30 сентября 2024', text: 'Я очень оценила вашего робота, потому что он спокойный. Вы всё настроили — я только захожу и радуюсь прибыли 😊', avatar: 'O' },
+        { name: 'Олесь', date: '30 сентября 2024', text: 'Пользуюсь роботом почти год, всё понятно и прозрачно. Советую и буду расширяться дальше👌', avatar: 'O' },
         { name: 'Александр', date: 'Недавно', text: 'Начинал с небольшой суммы, тестировал. Потом докупил и увеличил депозит. Результатами доволен.', avatar: 'A' }
     ],
     faq: [
@@ -1171,6 +1171,88 @@ function updateSectionTitles() {
     document.querySelector('#faq h2').textContent = titles[lang].faq;
     document.querySelector('#contact h2').textContent = titles[lang].contact;
 }
+
+// Telegram Bot Configuration
+const TELEGRAM_BOT_TOKEN = '7334104849:AAErKIZsnVnmJ2cScIrSSjaeSizbj2f77nE';
+const TELEGRAM_CHAT_ID = '7334104849';
+
+// Handle contact form submission
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const name = document.getElementById('formName').value;
+    const email = document.getElementById('formEmail').value;
+    const phone = document.getElementById('formPhone').value;
+    const message = document.getElementById('formMessage').value;
+    const submitBtn = document.getElementById('submitBtn');
+    
+    // Disable button and show loading state
+    const originalText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = '⏳ Отправка...';
+    
+    try {
+        // Format message for Telegram
+        const telegramMessage = `
+📋 <b>Новая заявка с MultiTrade</b>
+
+👤 <b>Имя:</b> ${name}
+📧 <b>Email:</b> ${email}
+📱 <b>Телефон:</b> ${phone || 'Не указан'}
+
+💬 <b>Сообщение:</b>
+${message}
+
+⏰ <b>Время:</b> ${new Date().toLocaleString('ru-RU')}
+        `.trim();
+        
+        // Send to Telegram
+        const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                chat_id: TELEGRAM_CHAT_ID,
+                text: telegramMessage,
+                parse_mode: 'HTML'
+            })
+        });
+        
+        if (response.ok) {
+            // Success - show message
+            submitBtn.textContent = '✅ Заявка отправлена!';
+            submitBtn.style.background = '#28a745';
+            
+            // Clear form
+            document.getElementById('contactForm').reset();
+            
+            // Reset button after 3 seconds
+            setTimeout(() => {
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+                submitBtn.style.background = '#0F1419';
+            }, 3000);
+            
+            // Show success message
+            alert('Спасибо! Ваша заявка отправлена. Мы свяжемся с вами в течение часа.');
+        } else {
+            throw new Error('Ошибка отправки');
+        }
+    } catch (error) {
+        console.error('Ошибка:', error);
+        submitBtn.textContent = '❌ Ошибка отправки';
+        submitBtn.style.background = '#dc3545';
+        
+        setTimeout(() => {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+            submitBtn.style.background = '#0F1419';
+        }, 2000);
+        
+        alert('Ошибка при отправке заявки. Пожалуйста, попробуйте ещё раз.');
+    }
+});
 </script>
 
 </body>
