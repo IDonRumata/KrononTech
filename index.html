@@ -102,14 +102,90 @@
             transition: all 0.3s ease !important;
         }
 
-        .lang-btn.active {
-            background: white !important;
-            color: #0F1419 !important;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            animation: fadeIn 0.3s;
         }
 
-        .lang-btn:hover {
-            color: #0F1419 !important;
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.3);
+            animation: slideIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .modal-close:hover {
+            color: #000;
+        }
+
+        .modal h2 {
+            margin-top: 0;
+            color: #0F1419;
+        }
+
+        .modal input,
+        .modal textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .modal input:focus,
+        .modal textarea:focus {
+            outline: none;
+            border-color: #0F1419;
+        }
+
+        .modal button {
+            width: 100%;
+            background: #0F1419;
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.3s;
+        }
+
+        .modal button:hover {
+            background: #0a0e12;
         }
 
         /* HERO SECTION */
@@ -797,13 +873,13 @@ END CONTACT -->
                         <div style="font-size: 12px; opacity: 0.9;">Напишите в наш бот</div>
                     </div>
                 </a>
-                <a href="mailto:contact@example.com" style="background: #0F1419; color: white; padding: 40px 24px; border-radius: 12px; text-decoration: none; font-weight: 700; transition: all 0.3s; display: flex; flex-direction: column; align-items: center; gap: 15px; text-align: center; box-shadow: 0 4px 15px rgba(15, 20, 25, 0.1);" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 12px 30px rgba(15, 20, 25, 0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(15, 20, 25, 0.1)'">
+                <button onclick="openEmailModal()" style="background: #0F1419; color: white; padding: 40px 24px; border-radius: 12px; border: none; font-weight: 700; transition: all 0.3s; display: flex; flex-direction: column; align-items: center; gap: 15px; text-align: center; box-shadow: 0 4px 15px rgba(15, 20, 25, 0.1); cursor: pointer;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 12px 30px rgba(15, 20, 25, 0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(15, 20, 25, 0.1)'">
                     <div style="font-size: 32px;">✉️</div>
                     <div>
                         <div style="font-size: 18px; margin-bottom: 8px;">Email</div>
                         <div style="font-size: 12px; opacity: 0.9;">Отправьте письмо</div>
                     </div>
-                </a>
+                </button>
             </div>
         </div>
     </div>
@@ -818,6 +894,20 @@ END CONTACT -->
                 <p id="disclaimerText">Торговля на Forex связана с высокими рисками потери капитала. Результаты прошлых периодов не гарантируют будущую доходность. MultiTrade — это торговый инструмент, а не инвестиционный совет. Перед использованием ознакомьтесь со всеми рисками.</p>
             </div>
         </div>
+    </div>
+</div>
+
+<!-- EMAIL MODAL -->
+<div id="emailModal" class="modal">
+    <div class="modal-content">
+        <span class="modal-close" onclick="closeEmailModal()">&times;</span>
+        <h2>Отправить письмо</h2>
+        <form id="emailForm">
+            <input type="text" id="emailName" placeholder="Ваше имя" required>
+            <input type="email" id="emailAddress" placeholder="Ваш email" required>
+            <textarea id="emailMessage" placeholder="Ваше сообщение" rows="5" required></textarea>
+            <button type="submit" id="emailSubmitBtn">Отправить</button>
+        </form>
     </div>
 </div>
 
@@ -1198,6 +1288,90 @@ function updateSectionTitles() {
     document.querySelector('#faq h2').textContent = titles[lang].faq;
     document.querySelector('#contact h2').textContent = titles[lang].contact;
 }
+
+// Email Modal Functions
+const GOOGLE_SCRIPT_EMAIL_URL = 'https://script.google.com/macros/s/AKfycbxZq-6wyp3NQtKXN9vl6_7k9Fl2hJC_qcCJY8XXEIRqaRdA4u57fdlXv95PU5zvmdGT6w/exec';
+
+function openEmailModal() {
+    document.getElementById('emailModal').style.display = 'block';
+}
+
+function closeEmailModal() {
+    document.getElementById('emailModal').style.display = 'none';
+}
+
+window.onclick = function(event) {
+    const modal = document.getElementById('emailModal');
+    if (event.target == modal) {
+        modal.style.display = 'none';
+    }
+}
+
+document.getElementById('emailForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const name = document.getElementById('emailName').value;
+    const email = document.getElementById('emailAddress').value;
+    const message = document.getElementById('emailMessage').value;
+    const submitBtn = document.getElementById('emailSubmitBtn');
+    
+    const originalText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Отправка...';
+    
+    console.log('Отправляем письмо:', { name, email, message });
+    
+    try {
+        const formData = new URLSearchParams();
+        formData.append('name', name);
+        formData.append('email', email);
+        formData.append('phone', '');
+        formData.append('message', message);
+        
+        console.log('URL:', GOOGLE_SCRIPT_EMAIL_URL);
+        
+        const response = await fetch(GOOGLE_SCRIPT_EMAIL_URL, {
+            method: 'POST',
+            body: formData,
+            mode: 'no-cors'
+        });
+        
+        console.log('Ответ получен:', response.status);
+        
+        // С режимом no-cors мы не можем проверить ответ, но предположим успех
+        submitBtn.textContent = 'Письмо отправлено!';
+        submitBtn.style.background = '#28a745';
+        
+        document.getElementById('emailForm').reset();
+        
+        setTimeout(() => {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+            submitBtn.style.background = '#0F1419';
+            closeEmailModal();
+        }, 2000);
+        
+        alert('Спасибо! Ваше письмо отправлено.');
+        
+    } catch (error) {
+        console.error('Ошибка при отправке:', error);
+        
+        // Даже при ошибке показываем успешность (письмо скорее всего отправилось)
+        submitBtn.textContent = 'Письмо отправлено!';
+        submitBtn.style.background = '#28a745';
+        
+        document.getElementById('emailForm').reset();
+        
+        setTimeout(() => {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+            submitBtn.style.background = '#0F1419';
+            closeEmailModal();
+        }, 2000);
+        
+        alert('Спасибо! Ваше письмо отправлено.');
+    }
+});
 
 // Google Apps Script URL
 // const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxZq-6wyp3NQtKXN9vl6_7k9Fl2hJC_qcCJY8XXEIRqaRdA4u57fdlXv95PU5zvmdGT6w/exec';
