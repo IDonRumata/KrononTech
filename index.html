@@ -764,18 +764,24 @@
                     <a href="https://www.myfxbook.com/ru/members/Robotic_Systems/mt4-35076999/11031977" target="_blank" class="btn btn-secondary" style="padding: 12px 24px; font-size: 16px; text-decoration: none;">Статистика Myfxbook</a>
                 </div>
             </div>
-            <div class="hero-stats">
-                <div>
-                    <div class="stat-value">+132%</div>
-                    <div class="stat-label">Общая доходность</div>
+            <div style="background: white; border: 2px solid #e0e0e0; border-radius: 12px; padding: 30px; margin-top: 30px;">
+                <div class="hero-stats">
+                    <div>
+                        <div class="stat-value">+132%</div>
+                        <div class="stat-label">Общая доходность</div>
+                    </div>
+                    <div>
+                        <div class="stat-value">11.05%</div>
+                        <div class="stat-label">Ежемесячно</div>
+                    </div>
+                    <div>
+                        <div class="stat-value">24/5</div>
+                        <div class="stat-label">Автоматическая торговля</div>
+                    </div>
                 </div>
-                <div>
-                    <div class="stat-value">11.05%</div>
-                    <div class="stat-label">Ежемесячно</div>
-                </div>
-                <div>
-                    <div class="stat-value">24/5</div>
-                    <div class="stat-label">Автоматическая торговля</div>
+                <div style="margin-top: 25px; padding-top: 25px; border-top: 1px solid #e0e0e0; font-size: 13px; color: #666; line-height: 1.6;">
+                    <strong style="color: #0F1419;" id="statDescTitle">Историческая производительность инструмента</strong><br>
+                    <span id="statDescText">Данные показатели отражают историческую работу торгового инструмента с мая 2024 года. Прошлые результаты не гарантируют будущую доходность. Подробная информация о рисках представлена в дисклеймере ниже.</span>
                 </div>
             </div>
         </div>
@@ -1027,8 +1033,8 @@ const dataRu = {
         { icon: '📚', title: 'Трио-классика', desc: '3 сетки на 2 стратегиях. Классический подход.' }
     ],
     pricing: [
-        { name: 'Самостоятельная настройка', price: 750, features: ['Торговый робот', 'Видео-гайд', 'Все 5 режимов', 'Техподдержка', '1 месяц бесплатно'], popular: false },
-        { name: 'Настройка под ключ', price: 950, features: ['Всё из предыдущего', 'Полная настройка', 'Консультация', 'Оптимизация', 'Приоритет', '1 месяц бесплатно'], popular: true }
+        { name: 'Самостоятельная настройка', price: 750, features: ['Персональная консультация по запуску и эксплуатации торговой стратегии', 'Видеогайд по самостоятельному внедрению инструментов', 'Все 5 режимов тестирования', 'Техническая поддержка', 'Бесплатное приложение (торговый робот) для практического ознакомления', '1 месяц консультационного сопровождения бесплатно'], popular: false },
+        { name: 'Настройка под ключ', price: 950, features: ['Всё из пакета "Самостоятельная настройка"', 'Полная настройка инструментов под ключ', 'Индивидуальная консультация и сопровождение', 'Оптимизация параметров', 'Приоритетное техническое обслуживание', 'Персональная разработка стратегий', '3 месяца консультационного сопровождения бесплатно'], popular: true }
     ],
     testimonials: [
         { name: 'Ольга', date: '3 сентября 2024', text: 'Я очень оценила вашего робота, потому что он спокойный. Вы всё настроили — я только захожу и радуюсь прибыли 😊', avatar: 'O' },
@@ -1064,7 +1070,7 @@ const dataEn = {
     ],
     pricing: [
         { name: 'Self Setup', price: 750, features: ['Trading robot', 'Video guide', 'All 5 modes', 'Tech support', '1 month free'], popular: false },
-        { name: 'Turnkey Setup', price: 950, features: ['Everything from above', 'Full setup', 'Consultation', 'Optimization', 'Priority', '1 month free'], popular: true }
+        { name: 'Turnkey Setup', price: 950, features: ['Everything from above', 'Full setup', 'Consultation', 'Optimization', 'Priority', '3 months free'], popular: true }
     ],
     testimonials: [
         { name: 'Olga', date: 'September 3, 2024', text: 'I really appreciated your robot because it\'s calm. You set everything up - I just come and enjoy the profits 😊', avatar: 'O' },
@@ -1468,6 +1474,19 @@ function updateSectionTitles() {
     // Кнопка Myfxbook
     const myfxbookBtn = document.querySelector('a[href*="myfxbook"]');
     if (myfxbookBtn) myfxbookBtn.textContent = t.myfxbook;
+    
+    // Описание статистики в hero
+    const statDescTitle = document.getElementById("statDescTitle");
+    const statDescText = document.getElementById("statDescText");
+    if (statDescTitle) {
+        if (lang === "en") {
+            statDescTitle.textContent = "Historical instrument performance";
+            statDescText.textContent = "These indicators reflect the historical performance of the trading instrument since May 2024. Past results do not guarantee future returns. Detailed information about risks is presented in the disclaimer below.";
+        } else {
+            statDescTitle.textContent = "Историческая производительность инструмента";
+            statDescText.textContent = "Данные показатели отражают историческую работу торгового инструмента с мая 2024 года. Прошлые результаты не гарантируют будущую доходность. Подробная информация о рисках представлена в дисклеймере ниже.";
+        }
+    }
 }
 
 // Email Modal Functions
