@@ -752,7 +752,7 @@
     </div>
 </section>
 
-<!-- CONTACT -->
+<!-- CONTACT - TEMPORARILY HIDDEN
 <section id="contact" style="padding: 80px 20px; background: linear-gradient(135deg, #f8f9fa 0%, #f0f9f5 100%);">
     <div class="container">
         <h2 style="font-size: 42px; margin-bottom: 15px; color: #0F1419;">Оставьте заявку</h2>
@@ -780,9 +780,36 @@
         </div>
     </div>
 </section>
+END CONTACT -->
+
+</section>
+
+<!-- CONTACT - VISIBLE SECTION -->
+<section id="contact" style="padding: 80px 20px; background: linear-gradient(135deg, #f8f9fa 0%, #f0f9f5 100%);">
+    <div class="container">
+        <h2 style="font-size: 42px; margin-bottom: 50px; color: #0F1419; text-align: center;">Оставьте заявку</h2>
+        <div style="max-width: 500px; margin: 0 auto;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <a href="https://t.me/KrononTech_bot" target="_blank" style="background: #0F1419; color: white; padding: 40px 24px; border-radius: 12px; text-decoration: none; font-weight: 700; transition: all 0.3s; display: flex; flex-direction: column; align-items: center; gap: 15px; text-align: center; box-shadow: 0 4px 15px rgba(15, 20, 25, 0.1);" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 12px 30px rgba(15, 20, 25, 0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(15, 20, 25, 0.1)'">
+                    <div style="font-size: 32px;">📱</div>
+                    <div>
+                        <div style="font-size: 18px; margin-bottom: 8px;">Telegram</div>
+                        <div style="font-size: 12px; opacity: 0.9;">Напишите в наш бот</div>
+                    </div>
+                </a>
+                <a href="mailto:contact@example.com" style="background: #0F1419; color: white; padding: 40px 24px; border-radius: 12px; text-decoration: none; font-weight: 700; transition: all 0.3s; display: flex; flex-direction: column; align-items: center; gap: 15px; text-align: center; box-shadow: 0 4px 15px rgba(15, 20, 25, 0.1);" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 12px 30px rgba(15, 20, 25, 0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(15, 20, 25, 0.1)'">
+                    <div style="font-size: 32px;">✉️</div>
+                    <div>
+                        <div style="font-size: 18px; margin-bottom: 8px;">Email</div>
+                        <div style="font-size: 12px; opacity: 0.9;">Отправьте письмо</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- DISCLAIMER -->
-<div class="disclaimer">
     <div class="container">
         <div class="disclaimer-box">
             <div class="disclaimer-icon">⚠️</div>
@@ -1173,9 +1200,11 @@ function updateSectionTitles() {
 }
 
 // Google Apps Script URL
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxZq-6wyp3NQtKXN9vl6_7k9Fl2hJC_qcCJY8XXEIRqaRdA4u57fdlXv95PU5zvmdGT6w/exec';
+// const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxZq-6wyp3NQtKXN9vl6_7k9Fl2hJC_qcCJY8XXEIRqaRdA4u57fdlXv95PU5zvmdGT6w/exec';
 
 // Handle contact form submission
+// COMMENTED OUT - FORM IS HIDDEN
+/*
 document.getElementById('contactForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     
@@ -1238,6 +1267,7 @@ document.getElementById('contactForm').addEventListener('submit', async function
         alert('Ошибка при отправке заявки. Пожалуйста, попробуйте ещё раз.');
     }
 });
+*/
 </script>
 
 </body>
