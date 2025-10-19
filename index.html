@@ -930,11 +930,11 @@ END CONTACT -->
                 <h3>Социальные сети</h3>
                 <a class="footer-link" href="https://instagram.com/krononchill" target="_blank">📸 Instagram</a>
                 <a class="footer-link" href="https://tiktok.com/@comicskronon" target="_blank">🎵 TikTok</a>
-                <p style="margin-top: 15px; font-size: 12px;">Оплата: криптовалюта, по договоренности</p>
+
             </div>
         </div>
         <div class="footer-bottom">
-            © 2025 Kronon MultiTrade. Все права защищены.
+            <span id="copyrightText">© 2025 Kronon MultiTrade. Все права защищены.</span>
         </div>
     </div>
 </footer>
@@ -1262,6 +1262,64 @@ function updateFooterContent() {
     }
 }
 
+function updateStatsLabels() {
+    const lang = currentLang;
+    const statLabels = document.querySelectorAll('.stat-label');
+    
+    if (lang === 'en') {
+        if (statLabels[0]) statLabels[0].textContent = 'Total Profit';
+        if (statLabels[1]) statLabels[1].textContent = 'Monthly';
+        if (statLabels[2]) statLabels[2].textContent = 'Automated Trading';
+    } else {
+        if (statLabels[0]) statLabels[0].textContent = 'Общая доходность';
+        if (statLabels[1]) statLabels[1].textContent = 'Ежемесячно';
+        if (statLabels[2]) statLabels[2].textContent = 'Автоматическая торговля';
+    }
+}
+
+function updatePricingLabels() {
+    const lang = currentLang;
+    const priceSpans = document.querySelectorAll('[style*="font-size: 14px"]');
+    
+    priceSpans.forEach(span => {
+        if (span.textContent.includes('/месяц') || span.textContent.includes('/month')) {
+            if (lang === 'en') {
+                span.textContent = '/month';
+            } else {
+                span.textContent = '/месяц';
+            }
+        }
+    });
+}
+
+function updateContactsLabels() {
+    const lang = currentLang;
+    const contactDivs = document.querySelectorAll('#contact a > div:last-child > div:last-child, #contact button > div:last-child > div:last-child');
+    
+    contactDivs.forEach((div, index) => {
+        if (div.textContent.includes('Напишите') || div.textContent.includes('Write')) {
+            if (lang === 'en') {
+                div.textContent = 'Write to our bot';
+            } else {
+                div.textContent = 'Напишите в наш бот';
+            }
+        }
+    });
+}
+
+function updateCopyrightText() {
+    const lang = currentLang;
+    const copyrightSpan = document.getElementById('copyrightText');
+    
+    if (copyrightSpan) {
+        if (lang === 'en') {
+            copyrightSpan.textContent = '© 2025 Kronon MultiTrade. All rights reserved.';
+        } else {
+            copyrightSpan.textContent = '© 2025 Kronon MultiTrade. Все права защищены.';
+        }
+    }
+}
+
 function updatePageContent() {
     render();
     updateHeroContent();
@@ -1269,6 +1327,10 @@ function updatePageContent() {
     updateSectionTitles();
     updateButtonsText();
     updateFooterContent();
+    updateStatsLabels();
+    updatePricingLabels();
+    updateContactsLabels();
+    updateCopyrightText();
 }
 
 function updateButtonsText() {
