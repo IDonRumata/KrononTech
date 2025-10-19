@@ -1,120 +1,1244 @@
-import { useLanguage } from "@/contexts/LanguageContext";
-import { TrendingUp, Layers, Shield, Sliders } from "lucide-react";
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MultiTrade - Пассивный доход на Forex</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
 
-export const About = () => {
-  const { t } = useLanguage();
+        :root {
+            --primary: #0F1419;
+            --primary-dark: #0a0e12;
+            --primary-light: #1a1f28;
+            --secondary: #1a2332;
+            --text-dark: #1a1a1a;
+            --text-light: #666;
+            --bg-light: #f8f9fa;
+            --border: #e0e0e0;
+            --accent: #0F1419;
+        }
 
-  const features = [
-    {
-      icon: TrendingUp,
-      title: t('about.feature1.title'),
-      description: t('about.feature1.desc'),
-    },
-    {import { useLanguage } from "@/contexts/LanguageContext";
-import { TrendingUp, Layers, Shield, Sliders } from "lucide-react";
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            color: var(--text-dark);
+            background: var(--bg-light);
+        }
 
-export const About = () => {
-  const { t } = useLanguage();
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-  const features = [
-    {
-      icon: TrendingUp,
-      title: t('about.feature1.title'),
-      description: t('about.feature1.desc'),
-    },
-    {
-      icon: Layers,
-      title: t('about.feature2.title'),
-      description: t('about.feature2.desc'),
-    },
-    {
-      icon: Shield,
-      title: t('about.feature3.title'),
-      description: t('about.feature3.desc'),
-    },
-    {
-      icon: Sliders,
-      title: t('about.feature4.title'),
-      description: t('about.feature4.desc'),
-    },
-  ];
+        /* HEADER */
+        header {
+            background: white;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
 
-  return (
-    <section className="py-24 px-4">
-      <div className="container mx-auto max-w-7xl">
-        <div className="text-center mb-16 space-y-4">
-          <h2 className="text-4xl lg:text-5xl font-bold">{t('about.title')}</h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            {t('about.description')}
-          </p>
-        </div>
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {features.map((feature, index) => {
-            const Icon = feature.icon;
-            return (
-              <div
-                key={index}
-                className="bg-card border border-border rounded-2xl p-8 space-y-4 hover:border-primary/50 transition-colors"
-              >
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                  <Icon className="w-6 h-6 text-primary" />
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-admin {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-light);
+        }
+
+        .btn-admin:hover {
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .lang-btn {
+            transition: all 0.3s ease !important;
+        }
+
+        .lang-btn.active {
+            background: white !important;
+            color: #0F1419 !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .lang-btn:hover {
+            color: #0F1419 !important;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            background: linear-gradient(135deg, #f8f9fa 0%, #f0f9f5 100%);
+            padding: 60px 20px;
+        }
+
+        .hero-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .hero-left h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .hero-subtitle {
+            font-size: 32px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .hero-desc {
+            font-size: 16px;
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .hero-buttons button {
+            padding: 12px 24px;
+            font-size: 16px;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #999;
+            margin-top: 5px;
+        }
+
+        .hero-right {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        /* DISCLAIMER */
+        .disclaimer {
+            background: #fff3cd;
+            padding: 40px 20px;
+        }
+
+        .disclaimer-box {
+            background: white;
+            border: 2px solid #ff9800;
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .disclaimer-icon {
+            font-size: 28px;
+            flex-shrink: 0;
+        }
+
+        .disclaimer-text h3 {
+            color: #ff6f00;
+            margin-bottom: 10px;
+        }
+
+        .disclaimer-text p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 60px 20px;
+        }
+
+        section.light {
+            background: var(--bg-light);
+        }
+
+        h2 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 40px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary);
+        }
+
+        .card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            color: var(--text-light);
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .card-icon {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        /* PRICING - старые классы удалены, используются inline стили */
+
+        /* TESTIMONIALS */
+        .testimonial-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--primary);
+            padding: 20px;
+        }
+
+        .testimonial-header {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #c8e6c9;
+            font-weight: 700;
+            color: #666;
+        }
+
+        .testimonial-name {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .testimonial-date {
+            font-size: 12px;
+            color: #999;
+        }
+
+        .testimonial-text {
+            color: var(--text-light);
+            line-height: 1.6;
+            font-style: italic;
+            font-size: 14px;
+        }
+
+        /* FAQ */
+        .faq-item {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 20px;
+            background: white;
+            border: none;
+            text-align: left;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        .faq-question:hover {
+            background: #f5f5f5;
+            color: var(--primary);
+        }
+
+        .faq-question.open {
+            background: #f5f5f5;
+        }
+
+        .faq-toggle {
+            transition: transform 0.3s;
+        }
+
+        .faq-toggle.open {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 20px 20px;
+            background: #fafafa;
+            border-top: 1px solid var(--border);
+            color: var(--text-light);
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--secondary);
+            color: white;
+            padding: 40px 20px 20px;
+            margin-top: 60px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .footer-section p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .footer-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            margin: 8px 0;
+            transition: all 0.3s;
+        }
+
+        .footer-link:hover {
+            color: white;
+            gap: 15px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+        }
+
+        /* ADMIN PANEL */
+        .admin-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .admin-overlay.open {
+            display: flex;
+        }
+
+        .admin-panel {
+            background: white;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 85vh;
+            overflow: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .admin-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            background: white;
+        }
+
+        .admin-close {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #ff4444;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .admin-tabs {
+            display: flex;
+            gap: 10px;
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--border);
+            overflow-x: auto;
+            background: white;
+            position: sticky;
+            top: 60px;
+        }
+
+        .admin-tab {
+            padding: 10px 15px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-weight: 600;
+            color: #999;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .admin-tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .admin-content {
+            padding: 20px;
+        }
+
+        .admin-section {
+            display: none;
+        }
+
+        .admin-section.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            background: white;
+            color: var(--text-dark);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #999;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(15, 20, 25, 0.1);
+            background: #fafbfc;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+            font-size: 14px;
+        }
+
+        .btn-save {
+            background: var(--primary);
+            color: white;
+            padding: 14px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 15px;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-save:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(15, 20, 25, 0.2);
+        }
+
+        .saved-msg {
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        .saved-msg.show {
+            display: block;
+        }
+
+        #contactForm input:focus,
+        #contactForm textarea:focus {
+            border-color: #0F1419 !important;
+            box-shadow: 0 0 0 4px rgba(15, 20, 25, 0.1) !important;
+            background: #fafbfc !important;
+            outline: none !important;
+        }
+
+        #contactForm input:hover,
+        #contactForm textarea:hover {
+            border-color: #0F1419 !important;
+        }
+
+        #contactForm button[type="submit"]:hover {
+            background: #0a0e12 !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 8px 20px rgba(15, 20, 25, 0.3) !important;
+        }
+
+        #contactForm button[type="submit"]:active {
+            transform: translateY(0) !important;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .hero-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .price-card.popular {
+                transform: scale(1);
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-left h1 {
+                font-size: 32px;
+            }
+
+            .hero-subtitle {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="container">
+        <div class="header-inner">
+            <a href="#" class="logo" style="display: flex; align-items: center; gap: 8px;">
+                <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 2000.000000 2000.000000" preserveAspectRatio="xMidYMid meet" style="flex-shrink: 0;">
+                <g transform="translate(0.000000,2000.000000) scale(0.100000,-0.100000)" fill="#0F1419" stroke="none">
+                <path d="M0 10000 l0 -10000 10000 0 10000 0 0 10000 0 10000 -10000 0 -10000 0 0 -10000z m10612 8484 c26 -13 48 -62 48 -105 0 -9 13 -54 29 -101 17 -46 37 -127 46 -179 9 -52 25 -123 35 -159 10 -36 24 -96 31 -135 11 -63 16 -74 63 -120 44 -44 65 -56 156 -88 58 -20 152 -45 209 -57 57 -12 138 -34 180 -49 42 -16 110 -36 151 -46 41 -10 92 -27 114 -37 33 -17 92 -28 291 -55 54 -7 118 12 158 46 17 16 46 36 64 44 17 9 69 56 115 104 237 250 293 303 325 312 39 11 68 5 106 -21 15 -11 53 -30 85 -42 31 -13 86 -41 122 -64 36 -22 90 -56 120 -75 51 -32 148 -94 445 -288 226 -148 275 -191 275 -242 0 -19 -44 -111 -95 -197 -86 -146 -196 -364 -210 -416 -24 -93 -20 -135 18 -188 17 -25 52 -74 77 -108 24 -35 71 -92 105 -128 114 -124 236 -266 379 -441 119 -145 152 -174 223 -195 60 -17 93 -17 363 6 63 5 190 10 282 10 208 0 233 -7 274 -83 15 -29 40 -70 56 -91 15 -21 28 -44 28 -51 0 -6 18 -47 39 -91 22 -43 44 -99 51 -124 7 -24 23 -66 36 -92 29 -57 118 -321 139 -414 9 -36 25 -89 35 -118 11 -28 22 -73 25 -101 3 -27 12 -88 20 -135 41 -254 43 -343 9 -416 -9 -18 -52 -64 -96 -101 -44 -37 -137 -118 -207 -178 -69 -61 -155 -131 -191 -157 -36 -25 -78 -60 -95 -78 -16 -18 -64 -57 -105 -88 -41 -30 -97 -74 -125 -97 -27 -23 -72 -57 -100 -76 -27 -18 -69 -52 -92 -75 -23 -24 -84 -74 -135 -112 -51 -38 -100 -77 -107 -86 -8 -10 -27 -24 -42 -32 -15 -7 -49 -32 -76 -54 -26 -22 -77 -65 -113 -95 -36 -29 -123 -102 -195 -162 -71 -60 -146 -119 -165 -133 -19 -13 -69 -54 -111 -90 -41 -36 -104 -87 -139 -115 -35 -27 -86 -70 -114 -95 -66 -59 -177 -147 -246 -196 -50 -35 -101 -76 -295 -234 -96 -79 -212 -171 -275 -220 -114 -87 -224 -176 -299 -241 -42 -36 -92 -74 -111 -84 -54 -28 -170 -136 -188 -176 -15 -32 -17 -101 -17 -681 l0 -647 29 -30 c18 -19 40 -31 55 -31 28 0 150 94 296 225 44 39 91 78 105 85 32 16 145 103 235 180 39 33 94 79 124 103 30 23 71 56 92 72 21 17 100 78 176 137 147 115 223 176 306 248 29 25 81 65 117 90 36 24 83 60 106 79 22 20 87 74 144 121 57 47 131 110 164 140 34 31 88 75 121 100 33 24 79 59 102 79 23 20 68 57 100 84 32 26 98 81 147 123 50 41 126 101 170 132 134 96 329 243 361 272 17 15 57 42 90 61 78 43 127 43 258 -5 152 -55 260 -141 323 -256 17 -32 19 -58 19 -275 0 -266 -12 -337 -62 -379 -14 -12 -54 -46 -88 -76 -87 -76 -159 -135 -234 -189 -36 -25 -85 -64 -110 -87 -25 -22 -100 -81 -166 -129 -66 -49 -165 -127 -221 -174 -112 -96 -200 -167 -277 -224 -29 -21 -72 -57 -97 -81 -25 -24 -67 -58 -94 -76 -59 -39 -157 -113 -251 -189 -38 -31 -88 -69 -110 -85 -22 -16 -56 -44 -75 -62 -37 -35 -67 -59 -217 -175 -51 -39 -93 -75 -93 -80 0 -5 -30 -31 -67 -59 -38 -29 -97 -76 -133 -107 -36 -30 -106 -85 -156 -121 -101 -74 -205 -158 -300 -242 -34 -30 -84 -71 -110 -90 -27 -19 -74 -55 -105 -80 -31 -25 -94 -74 -140 -110 -46 -36 -111 -90 -145 -120 -34 -30 -122 -100 -198 -155 -149 -109 -168 -134 -185 -236 -6 -31 -9 -454 -7 -1014 2 -1134 0 -1101 90 -1219 96 -126 182 -200 292 -253 l99 -48 640 -1 c352 0 658 -4 679 -8 22 -4 75 -25 118 -47 58 -29 87 -52 118 -90 22 -28 40 -55 40 -60 0 -4 17 -43 37 -86 l37 -77 0 -211 c1 -190 -1 -218 -22 -295 -27 -97 -34 -113 -74 -158 -16 -19 -40 -51 -54 -73 -15 -25 -39 -46 -62 -56 -20 -8 -57 -24 -81 -35 -101 -46 -126 -47 -1020 -49 l-846 -1 -140 37 c-77 20 -160 48 -185 61 -25 13 -76 36 -115 50 -86 33 -98 42 -91 68 4 18 -14 36 -106 106 -128 97 -265 225 -309 288 -17 24 -44 57 -61 74 -16 17 -38 51 -49 75 -11 25 -28 57 -38 72 -21 29 -85 180 -106 251 -34 111 -36 295 -35 3307 l0 2983 21 55 c21 57 53 88 172 168 23 15 55 40 72 56 16 16 50 42 75 58 49 30 177 130 299 233 43 36 108 90 146 120 37 30 91 74 118 98 28 23 54 42 59 42 4 0 30 20 57 44 27 24 92 74 145 111 54 37 104 77 112 90 8 12 42 42 76 66 34 24 82 62 108 84 26 22 72 59 101 82 30 23 77 60 104 82 28 23 77 62 110 88 33 26 103 86 156 133 126 112 155 134 279 219 101 69 129 91 290 226 40 33 94 75 122 93 27 18 85 68 129 110 73 71 79 80 79 118 0 27 -9 55 -28 85 -16 24 -61 108 -102 187 -40 79 -94 171 -119 205 -26 34 -63 89 -83 123 -20 33 -46 68 -58 79 -11 10 -34 43 -51 72 -17 29 -52 77 -78 105 -26 29 -78 94 -115 143 -78 103 -314 347 -436 450 -46 39 -103 88 -128 110 -46 41 -144 114 -220 162 -24 16 -64 42 -90 59 -53 36 -331 189 -437 242 -89 44 -280 123 -415 172 -58 21 -121 45 -140 53 -19 9 -64 20 -100 27 -36 6 -110 24 -166 40 -56 17 -168 39 -250 50 -82 11 -198 27 -259 35 -148 20 -506 20 -640 -1 -55 -8 -163 -21 -240 -29 -90 -9 -166 -23 -212 -39 -40 -14 -111 -32 -159 -41 -47 -9 -118 -28 -157 -42 -40 -14 -113 -36 -163 -48 -50 -13 -115 -37 -145 -53 -30 -17 -74 -36 -99 -42 -25 -6 -69 -25 -98 -41 -28 -16 -80 -40 -115 -53 -34 -13 -105 -47 -157 -76 -52 -29 -122 -67 -155 -85 -33 -18 -97 -59 -143 -91 -46 -33 -103 -70 -127 -84 -25 -14 -73 -51 -107 -81 -35 -30 -79 -66 -98 -79 -83 -58 -276 -228 -352 -312 -46 -50 -104 -113 -130 -140 -27 -27 -48 -53 -48 -58 0 -4 -16 -27 -35 -50 -81 -98 -261 -376 -326 -505 -22 -44 -48 -96 -59 -115 -11 -19 -30 -57 -43 -85 -13 -27 -38 -74 -57 -103 -26 -41 -35 -67 -38 -113 l-4 -59 72 -75 c43 -43 121 -107 189 -152 64 -43 143 -98 176 -123 33 -25 71 -53 85 -63 34 -24 151 -109 251 -182 45 -33 114 -90 153 -126 39 -36 85 -74 101 -84 17 -11 48 -33 70 -50 22 -18 57 -41 79 -54 21 -12 57 -37 80 -56 70 -59 309 -250 624 -500 28 -22 85 -65 129 -95 43 -30 107 -80 143 -111 36 -32 91 -77 122 -101 83 -63 226 -176 275 -217 79 -67 116 -96 173 -136 65 -45 208 -164 256 -212 17 -17 34 -47 38 -65 3 -18 7 -1390 7 -3048 l2 -3015 -30 -90 c-17 -49 -36 -115 -43 -145 -14 -62 -37 -109 -106 -227 -27 -44 -61 -103 -77 -130 -111 -194 -369 -410 -650 -543 -102 -48 -186 -74 -347 -106 -77 -16 -174 -17 -1005 -16 l-920 2 -88 32 c-75 28 -87 35 -85 54 2 13 -17 43 -55 86 -85 97 -99 136 -108 303 -13 243 -5 398 24 487 34 103 67 149 145 205 111 79 65 75 842 77 l695 2 80 28 c154 55 234 110 300 210 19 28 48 68 64 89 16 21 40 70 53 110 l23 72 1 949 2 950 -24 80 c-22 77 -26 84 -96 149 -40 37 -102 88 -138 113 -36 24 -96 72 -135 106 -38 33 -115 92 -170 131 -55 39 -113 83 -130 97 -29 27 -142 114 -330 255 -51 39 -129 99 -173 135 -191 156 -469 376 -553 437 -46 34 -176 134 -267 206 -85 66 -181 148 -242 203 -30 28 -73 61 -95 74 -37 22 -91 63 -255 195 -34 28 -90 73 -125 100 -34 28 -101 82 -147 122 -47 39 -105 84 -129 100 -24 15 -101 73 -170 128 -70 55 -170 134 -223 175 -158 122 -192 151 -260 226 -74 81 -84 109 -112 315 -24 184 -11 307 45 423 45 93 75 123 198 194 131 77 254 82 363 16 36 -22 78 -46 94 -54 16 -8 47 -31 70 -51 22 -19 68 -55 101 -79 73 -53 202 -158 271 -219 82 -74 561 -450 714 -561 66 -47 150 -113 238 -185 41 -33 87 -69 102 -80 15 -11 65 -49 110 -85 251 -199 380 -300 420 -328 25 -18 72 -55 105 -83 33 -28 89 -70 125 -93 36 -24 72 -51 80 -60 7 -10 32 -27 54 -38 42 -21 86 -57 227 -185 44 -40 84 -73 88 -73 5 0 51 -38 102 -85 109 -99 161 -125 210 -105 63 26 62 19 61 695 -1 571 -2 614 -21 676 -10 36 -23 75 -29 85 -15 29 -138 143 -212 197 -90 65 -137 102 -231 177 -44 36 -102 80 -127 98 -117 84 -150 110 -198 153 -59 53 -194 156 -244 185 -39 23 -148 107 -221 171 -26 23 -81 66 -121 96 -191 144 -266 202 -304 237 -38 35 -134 110 -244 190 -26 19 -105 80 -175 135 -206 162 -248 193 -293 225 -23 16 -84 65 -135 108 -51 43 -117 96 -147 116 -30 21 -66 49 -80 61 -30 27 -210 164 -290 220 -31 22 -90 67 -131 100 -41 33 -105 84 -144 113 -90 68 -224 185 -329 287 -106 102 -122 142 -119 295 4 196 47 522 84 626 11 33 31 99 45 148 14 49 35 110 48 135 13 25 31 78 41 118 9 40 29 91 44 115 15 24 35 64 43 90 23 67 133 241 175 279 36 31 37 31 112 25 42 -4 103 -11 136 -16 33 -6 119 -14 190 -20 72 -6 179 -15 239 -20 120 -11 150 -6 221 38 59 36 99 76 181 182 118 152 126 162 184 230 31 36 69 83 85 105 16 22 50 63 75 90 80 88 189 239 205 284 29 82 11 195 -45 276 -15 22 -38 60 -50 85 -13 25 -33 59 -45 75 -12 17 -28 46 -35 65 -8 19 -38 86 -67 149 -29 62 -53 124 -53 136 0 32 32 68 103 114 34 23 94 65 134 94 114 83 271 183 448 285 341 197 375 214 453 220 l64 5 75 -79 c41 -43 83 -92 93 -108 10 -16 79 -92 152 -169 173 -182 223 -208 342 -172 27 8 64 15 82 15 19 0 64 12 101 26 38 14 192 58 343 99 399 106 464 131 538 208 50 51 61 87 62 200 0 57 7 98 25 150 13 40 29 106 35 147 16 110 58 241 86 270 l24 25 438 5 c555 7 818 2 854 -16z m-1834 -4256 c148 -137 445 -420 573 -547 76 -75 185 -181 244 -236 186 -175 331 -319 354 -352 13 -20 35 -36 56 -42 73 -20 86 -10 391 297 156 158 360 363 452 456 92 92 190 185 217 206 61 46 115 98 178 173 27 31 56 57 64 57 17 0 109 -58 151 -94 31 -27 28 -72 -7 -127 -32 -49 -257 -289 -366 -389 -38 -36 -131 -128 -205 -205 -188 -196 -255 -262 -321 -320 -32 -27 -130 -117 -217 -200 -199 -188 -272 -245 -313 -245 -24 0 -51 18 -127 85 -115 99 -233 216 -270 265 -15 19 -62 67 -105 105 -43 39 -136 129 -208 200 -71 72 -217 218 -324 325 -107 107 -244 240 -305 295 -106 95 -150 147 -150 175 0 24 83 158 104 168 43 21 66 13 134 -50z m6809 -11550 c17 -10 34 -26 37 -36 3 -10 7 -261 9 -558 2 -586 4 -564 -51 -585 -27 -10 -7708 -13 -9850 -3 -1240 5 -1288 6 -1306 24 -19 18 -19 24 -7 129 8 60 11 125 8 143 -4 18 -7 219 -9 447 l-2 414 28 23 27 24 5542 -2 c5243 -3 5544 -4 5574 -20z"/>
+                </g>
+                </svg>
+                MultiTrade
+            </a>
+            <div class="header-buttons">
+                <div style="display: flex; gap: 8px; background: #f0f0f0; padding: 6px; border-radius: 6px;">
+                    <button class="lang-btn active" data-lang="ru" onclick="switchLanguage('ru')" style="padding: 8px 14px; border: none; background: white; color: #0F1419; font-weight: 700; cursor: pointer; border-radius: 4px; font-size: 13px; transition: all 0.3s;">РУ</button>
+                    <button class="lang-btn" data-lang="en" onclick="switchLanguage('en')" style="padding: 8px 14px; border: none; background: transparent; color: #999; font-weight: 700; cursor: pointer; border-radius: 4px; font-size: 13px; transition: all 0.3s;">EN</button>
                 </div>
-                <h3 className="text-2xl font-semibold text-primary">{feature.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
-              </div>
-            );
-          })}
+                <a href="#contact" class="btn btn-primary" style="text-decoration: none;">Начать бесплатно</a>
+                <button class="btn btn-admin" onclick="openAdmin()">🔧 Admin</button>
+            </div>
         </div>
-      </div>
-    </section>
-  );
+    </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+    <div class="container">
+        <div class="hero-inner">
+            <div class="hero-left">
+                <h1 id="heroTitle">Пассивный доход на Forex</h1>
+                <div class="hero-subtitle" id="heroSubtitle">без графиков и сложностей</div>
+                <p class="hero-desc" id="heroDesc">Профессиональный торговый робот MultiTrade работает за вас 24/5. Три независимые стратегии, автоматический анализ рынка, защита капитала.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary" style="text-decoration: none; padding: 12px 24px; font-size: 16px;">➜ Начать бесплатно</a>
+                    <button class="btn btn-secondary" style="padding: 12px 24px; font-size: 16px;">📊 Статистика Myfxbook</button>
+                </div>
+            </div>
+            <div class="hero-stats">
+                <div>
+                    <div class="stat-value">+132%</div>
+                    <div class="stat-label">Общая доходность</div>
+                </div>
+                <div>
+                    <div class="stat-value">11.05%</div>
+                    <div class="stat-label">Ежемесячно</div>
+                </div>
+                <div>
+                    <div class="stat-value">24/5</div>
+                    <div class="stat-label">Автоматическая торговля</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- DISCLAIMER -->
+<!-- FEATURES -->
+<section class="light" id="features">
+    <div class="container">
+        <h2>Почему MultiTrade идеален для новичков</h2>
+        <p class="section-subtitle">Зарабатывайте на Forex без специальных знаний</p>
+        <div class="grid" id="featuresGrid"></div>
+    </div>
+</section>
+
+<!-- TRADING MODES -->
+<section id="trading-modes">
+    <div class="container">
+        <h2>Режимы торговли</h2>
+        <p class="section-subtitle">Выберите стратегию под текущий рынок</p>
+        <div class="grid" id="modesGrid"></div>
+    </div>
+</section>
+
+<!-- PRICING -->
+<section class="light" id="pricing">
+    <div class="container">
+        <h2>Тарифы</h2>
+        <p class="section-subtitle">Выберите оптимальный план для старта</p>
+        <div class="pricing-grid" id="pricingGrid"></div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+    <div class="container">
+        <h2>Отзывы клиентов</h2>
+        <p class="section-subtitle">Реальные истории людей, которые уже используют MULTITRADE</p>
+        <div class="grid" id="testimonialsGrid"></div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="light" id="faq">
+    <div class="container">
+        <h2>Часто задаваемые вопросы</h2>
+        <p class="section-subtitle">Ответы на основные вопросы о MultiTrade</p>
+        <div style="max-width: 700px; margin: 0 auto;" id="faqGrid"></div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="padding: 80px 20px; background: linear-gradient(135deg, #f8f9fa 0%, #f0f9f5 100%);">
+    <div class="container">
+        <h2 style="font-size: 42px; margin-bottom: 15px; color: #0F1419;">Оставьте заявку</h2>
+        <p class="section-subtitle" style="margin-bottom: 50px; font-size: 18px; color: #666;">Мы свяжемся с вами в течение часа</p>
+        <div style="max-width: 650px; margin: 0 auto; background: white; padding: 45px; border-radius: 16px; box-shadow: 0 10px 40px rgba(15, 20, 25, 0.08);">
+            <form id="contactForm" style="display: flex; flex-direction: column; gap: 20px;">
+                <div style="display: flex; flex-direction: column; gap: 6px;">
+                    <label style="font-weight: 600; color: #1a1a1a; font-size: 14px;">Ваше имя</label>
+                    <input type="text" id="formName" placeholder="Введите ваше имя" required style="padding: 14px 16px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 15px; transition: all 0.3s ease; background: white; color: #1a1a1a; font-family: inherit;">
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 6px;">
+                    <label style="font-weight: 600; color: #1a1a1a; font-size: 14px;">Email</label>
+                    <input type="email" id="formEmail" placeholder="your@email.com" required style="padding: 14px 16px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 15px; transition: all 0.3s ease; background: white; color: #1a1a1a; font-family: inherit;">
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 6px;">
+                    <label style="font-weight: 600; color: #1a1a1a; font-size: 14px;">Телефон (опционально)</label>
+                    <input type="tel" id="formPhone" placeholder="+375 33 XXX XX XX" style="padding: 14px 16px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 15px; transition: all 0.3s ease; background: white; color: #1a1a1a; font-family: inherit;">
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 6px;">
+                    <label style="font-weight: 600; color: #1a1a1a; font-size: 14px;">Сообщение</label>
+                    <textarea id="formMessage" placeholder="Напишите ваше сообщение..." required style="padding: 14px 16px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 15px; min-height: 140px; transition: all 0.3s ease; background: white; color: #1a1a1a; font-family: inherit; resize: vertical;"></textarea>
+                </div>
+                <button type="submit" id="submitBtn" style="background: #0F1419; color: white; padding: 16px 24px; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 16px; transition: all 0.3s ease; letter-spacing: 0.5px; margin-top: 15px; text-transform: uppercase;">✉ Отправить заявку</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- DISCLAIMER -->
+<div class="disclaimer">
+    <div class="container">
+        <div class="disclaimer-box">
+            <div class="disclaimer-icon">⚠️</div>
+            <div class="disclaimer-text">
+                <h3>ВАЖНО: Дисклеймер</h3>
+                <p id="disclaimerText">Торговля на Forex связана с высокими рисками потери капитала. Результаты прошлых периодов не гарантируют будущую доходность. MultiTrade — это торговый инструмент, а не инвестиционный совет. Перед использованием ознакомьтесь со всеми рисками.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-section">
+                <h3>О MultiTrade</h3>
+                <p>MultiTrade — профессиональный торговый робот для автоматической торговли на Forex с 2019 года. Помогаем новичкам зарабатывать без опыта.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Контакты</h3>
+                <a class="footer-link" href="https://wa.me/375333032571" target="_blank">💬 WhatsApp</a>
+                <a class="footer-link" href="#">📱 Viber</a>
+                <a class="footer-link" href="https://t.me/KrononTech_bot" target="_blank">✈️ Telegram</a>
+                <a class="footer-link" href="mailto:marozandreyinvest@gmail.com">📧 Email</a>
+            </div>
+            <div class="footer-section">
+                <h3>Социальные сети</h3>
+                <a class="footer-link" href="https://instagram.com/krononchill" target="_blank">📸 Instagram</a>
+                <a class="footer-link" href="https://tiktok.com/@comicskronon" target="_blank">🎵 TikTok</a>
+                <p style="margin-top: 15px; font-size: 12px;">Оплата: криптовалюта, по договоренности</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2025 Kronon MultiTrade. Все права защищены.
+        </div>
+    </div>
+</footer>
+
+<!-- ADMIN PANEL -->
+<div class="admin-overlay" id="adminOverlay">
+    <div class="admin-panel">
+        <div class="admin-header">
+            <h2>Админ Панель</h2>
+            <button class="admin-close" onclick="closeAdmin()">✕</button>
+        </div>
+        
+        <div class="admin-tabs">
+            <button class="admin-tab active" onclick="switchTab('hero')">Hero</button>
+            <button class="admin-tab" onclick="switchTab('disclaimer')">Disclaimer</button>
+            <button class="admin-tab" onclick="switchTab('pricing')">Pricing</button>
+            <button class="admin-tab" onclick="switchTab('contact')">Contact</button>
+        </div>
+
+        <div class="admin-content">
+            <!-- HERO SECTION -->
+            <div class="admin-section active" id="tab-hero">
+                <div class="saved-msg" id="savedMsg">✓ Изменения сохранены!</div>
+                <div class="form-group">
+                    <label>Заголовок</label>
+                    <input type="text" id="inputHeroTitle" placeholder="Заголовок" value="Пассивный доход на Forex">
+                </div>
+                <div class="form-group">
+                    <label>Подзаголовок</label>
+                    <input type="text" id="inputHeroSubtitle" placeholder="Подзаголовок" value="без графиков и сложностей">
+                </div>
+                <div class="form-group">
+                    <label>Описание</label>
+                    <textarea id="inputHeroDesc">Профессиональный торговый робот MultiTrade работает за вас 24/5. Три независимые стратегии, автоматический анализ рынка, защита капитала.</textarea>
+                </div>
+                <button class="btn-save" onclick="saveHero()">💾 Сохранить</button>
+            </div>
+
+            <!-- DISCLAIMER SECTION -->
+            <div class="admin-section" id="tab-disclaimer">
+                <div class="form-group">
+                    <label>Текст дисклеймера</label>
+                    <textarea id="inputDisclaimer">Торговля на Forex связана с высокими рисками потери капитала. Результаты прошлых периодов не гарантируют будущую доходность. MultiTrade — это торговый инструмент, а не инвестиционный совет. Перед использованием ознакомьтесь со всеми рисками.</textarea>
+                </div>
+                <button class="btn-save" onclick="saveDisclaimer()">💾 Сохранить</button>
+            </div>
+
+            <!-- PRICING SECTION -->
+            <div class="admin-section" id="tab-pricing">
+                <p style="color: var(--text-light); margin-bottom: 15px;">Редактируйте тарифы здесь. Тариф 1: $750, Тариф 2: $950</p>
+                <button class="btn-save" onclick="savePricing()">💾 Обновить</button>
+            </div>
+
+            <!-- CONTACT SECTION -->
+            <div class="admin-section" id="tab-contact">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="inputEmail" value="marozandreyinvest@gmail.com">
+                </div>
+                <div class="form-group">
+                    <label>WhatsApp</label>
+                    <input type="text" id="inputWhatsapp" value="+375333032571">
+                </div>
+                <div class="form-group">
+                    <label>Telegram Bot</label>
+                    <input type="text" id="inputTelegram" value="@KrononTech_bot">
+                </div>
+                <button class="btn-save" onclick="saveContacts()">💾 Сохранить</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// DATA - Russian
+const dataRu = {
+    features: [
+        { icon: '📊', title: 'Никаких графиков', desc: 'Забудьте о сложных графиках и свечах. Робот сам анализирует рынок.' },
+        { icon: '📈', title: 'Пассивный доход', desc: 'Настройте один раз и получайте доход. Робот работает 24/5.' },
+        { icon: '▶️', title: 'Простая установка', desc: 'Видео-инструкция или настройка под ключ. За 15 минут.' },
+        { icon: '🛡️', title: 'Защита капитала', desc: 'Автоматические стоп-лоссы и контроль просадок.' },
+        { icon: '📚', title: 'Три стратегии', desc: 'Распределение рисков между независимыми стратегиями.' },
+        { icon: '🎧', title: 'Поддержка 24/7', desc: 'Всегда на связи через WhatsApp, Viber, Telegram.' }
+    ],
+    modes: [
+        { icon: '🎯', title: 'Стандарт', desc: 'Сбалансированный режим из 3 стратегий.' },
+        { icon: '⚡', title: 'Агрессивно-трендовый', desc: '2 стратегии в 3 сетки. Максимальная доходность.' },
+        { icon: '🛡️', title: 'Средняя консолидация', desc: 'Минимум сделок, снижение рисков.' },
+        { icon: '📈', title: 'Усиленный тренд', desc: 'Выше устойчивости стандарта.' },
+        { icon: '📚', title: 'Трио-классика', desc: '3 сетки на 2 стратегиях. Классический подход.' }
+    ],
+    pricing: [
+        { name: 'Самостоятельная настройка', price: 750, features: ['Торговый робот', 'Видео-гайд', 'Все 5 режимов', 'Техподдержка', '1 месяц бесплатно'], popular: false },
+        { name: 'Настройка под ключ', price: 950, features: ['Всё из предыдущего', 'Полная настройка', 'Консультация', 'Оптимизация', 'Приоритет', '1 месяц бесплатно'], popular: true }
+    ],
+    testimonials: [
+        { name: 'Ольга', date: '30 сентября 2024', text: 'Я очень оценила вашего робота, потому что он спокойный. Вы всё настроили — я только захожу и радуюсь прибыли 😊', avatar: 'O' },
+        { name: 'Олесь', date: '30 сентября 2024', text: 'Пользуюсь роботом почти год, всё понятно и прозрачно. Советую и буду расширяться дальше👌', avatar: 'O' },
+        { name: 'Александр', date: 'Недавно', text: 'Начинал с небольшой суммы, тестировал. Потом докупил и увеличил депозит. Результатами доволен.', avatar: 'A' }
+    ],
+    faq: [
+        { q: 'Что делает торговый робот MultiTrade?', a: 'MultiTrade — автоматизированный торговый советник для MetaTrader 4, использует три трендово-сеточные стратегии. Анализирует рынок и открывает сделки без участия.' },
+        { q: 'Сколько можно заработать?', a: 'Доходность зависит от режима торговли. Пример аккаунта с мая 2024 на Myfxbook. Результаты прошлых периодов не гарантируют будущую доходность.' },
+        { q: 'Нужны ли специальные знания?', a: 'Нет! Создан специально для новичков. Не нужно знать графики, свечи или индикаторы. Робот всё делает сам.' },
+        { q: 'Как робот защищает мой депозит?', a: 'Встроены стоп-лоссы, система приостановки при просадке, защитные трейлинг-стопы, эквити-стопы. Можно установить максимальный риск.' },
+        { q: 'Что нужно для старта?', a: 'Брокер с MT4, депозит от $200, VPS $4/месяц. Мы поможем со всеми настройками.' },
+        { q: 'Сколько времени занимает настройка?', a: 'Самостоятельная: 30 минут по видео. Под ключ: 1-2 часа, мы всё сделаем.' }
+    ]
 };
 
-      icon: Layers,
-      title: t('about.feature2.title'),
-      description: t('about.feature2.desc'),
-    },
-    {
-      icon: Shield,
-      title: t('about.feature3.title'),
-      description: t('about.feature3.desc'),
-    },
-    {
-      icon: Sliders,
-      title: t('about.feature4.title'),
-      description: t('about.feature4.desc'),
-    },
-  ];
-
-  return (
-    <section className="py-24 px-4">
-      <div className="container mx-auto max-w-7xl">
-        <div className="text-center mb-16 space-y-4">
-          <h2 className="text-4xl lg:text-5xl font-bold">{t('about.title')}</h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            {t('about.description')}
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-8">
-          {features.map((feature, index) => {
-            const Icon = feature.icon;
-            return (
-              <div
-                key={index}
-                className="bg-card border border-border rounded-2xl p-8 space-y-4 hover:border-primary/50 transition-colors"
-              >
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                  <Icon className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-2xl font-semibold text-primary">{feature.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
+// DATA - English
+const dataEn = {
+    features: [
+        { icon: '📊', title: 'No Charts', desc: 'Forget about complex charts and candles. The robot analyzes the market itself.' },
+        { icon: '📈', title: 'Passive Income', desc: 'Set it up once and get income. The robot works 24/5.' },
+        { icon: '▶️', title: 'Easy Setup', desc: 'Video tutorial or turnkey setup. In 15 minutes.' },
+        { icon: '🛡️', title: 'Capital Protection', desc: 'Automatic stop-losses and drawdown control.' },
+        { icon: '📚', title: 'Three Strategies', desc: 'Risk distribution between independent strategies.' },
+        { icon: '🎧', title: '24/7 Support', desc: 'Always available via WhatsApp, Viber, Telegram.' }
+    ],
+    modes: [
+        { icon: '🎯', title: 'Standard', desc: 'Balanced mode with 3 strategies.' },
+        { icon: '⚡', title: 'Aggressive Trend', desc: '2 strategies in 3 grids. Maximum profitability.' },
+        { icon: '🛡️', title: 'Average Consolidation', desc: 'Minimum trades, reduced risks.' },
+        { icon: '📈', title: 'Enhanced Trend', desc: 'Higher stability than standard.' },
+        { icon: '📚', title: 'Trio Classic', desc: '3 grids on 2 strategies. Classic approach.' }
+    ],
+    pricing: [
+        { name: 'Self Setup', price: 750, features: ['Trading robot', 'Video guide', 'All 5 modes', 'Tech support', '1 month free'], popular: false },
+        { name: 'Turnkey Setup', price: 950, features: ['Everything from above', 'Full setup', 'Consultation', 'Optimization', 'Priority', '1 month free'], popular: true }
+    ],
+    testimonials: [
+        { name: 'Olga', date: 'September 30, 2024', text: 'I really appreciated your robot because it\'s calm. You set everything up - I just come and enjoy the profits 😊', avatar: 'O' },
+        { name: 'Oles', date: 'September 30, 2024', text: 'I\'ve been using the robot for almost a year, everything is clear and transparent. I recommend it and will expand further👌', avatar: 'O' },
+        { name: 'Alexander', date: 'Recently', text: 'Started with a small amount, tested it. Then topped it up and increased the deposit. Happy with the results.', avatar: 'A' }
+    ],
+    faq: [
+        { q: 'What does the MultiTrade trading robot do?', a: 'MultiTrade is an automated trading advisor for MetaTrader 4 that uses three trend-grid strategies. It analyzes the market and opens trades without human intervention.' },
+        { q: 'How much can you earn?', a: 'Profitability depends on trading mode and risk level. You can see an example account from May 2024 on Myfxbook. Past results do not guarantee future returns.' },
+        { q: 'Do I need special knowledge?', a: 'No! It\'s designed specifically for beginners. You don\'t need to know charts, candles or indicators. The robot does everything itself.' },
+        { q: 'How does the robot protect my deposit?', a: 'Built-in stop-losses, drawdown suspension system, protective trailing stops, equity stops. You can set maximum risk manually.' },
+        { q: 'What do I need to start?', a: 'A broker with MT4, deposit from $200, VPS for about $4/month. We help with all setup.' },
+        { q: 'How long does setup take?', a: 'Self-setup: 30 minutes with video. Turnkey: 1-2 hours, we do everything.' }
+    ]
 };
+
+let currentLang = 'ru';
+let data = dataRu;
+
+// RENDER
+function render() {
+    // Features
+    const featuresHTML = data.features.map(f => `
+        <div class="card">
+            <div class="card-icon">${f.icon}</div>
+            <h3>${f.title}</h3>
+            <p>${f.desc}</p>
+        </div>
+    `).join('');
+    document.getElementById('featuresGrid').innerHTML = featuresHTML;
+
+    // Modes
+    const modesHTML = data.modes.map(m => `
+        <div class="card">
+            <div class="card-icon">${m.icon}</div>
+            <h3>${m.title}</h3>
+            <p>${m.desc}</p>
+        </div>
+    `).join('');
+    document.getElementById('modesGrid').innerHTML = modesHTML;
+
+    // Pricing
+    const pricingHTML = data.pricing.map(p => `
+        <div style="position: relative; background: white; border: 2px solid #e0e0e0; border-radius: 12px; padding: 35px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); ${p.popular ? 'border-color: #0F1419; transform: scale(1.02); box-shadow: 0 10px 40px rgba(15, 20, 25, 0.12);' : 'box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);'};" onmouseover="this.style.transform='${p.popular ? 'scale(1.02) ' : ''}translateY(-12px)'; this.style.boxShadow='0 20px 60px rgba(15, 20, 25, 0.15)'; this.style.borderColor='#0F1419'" onmouseout="this.style.transform='${p.popular ? 'scale(1.02)' : ''}'; this.style.boxShadow='${p.popular ? '0 10px 40px rgba(15, 20, 25, 0.12)' : '0 4px 15px rgba(0, 0, 0, 0.05)'}'; this.style.borderColor='${p.popular ? '#0F1419' : '#e0e0e0'}'">
+            ${p.popular ? '<div style="position: absolute; top: -12px; right: 20px; background: #0F1419; color: white; padding: 6px 18px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 4px 15px rgba(15, 20, 25, 0.2);">POPULAR</div>' : ''}
+            <h3 style="font-size: 24px; margin: ${p.popular ? '20px 0 15px 0' : '0 0 15px 0'}; font-weight: 700; color: #0F1419;">${p.name}</h3>
+            <div style="font-size: 48px; font-weight: 800; color: #0F1419; margin-bottom: 5px; line-height: 1;">$${p.price}<span style="font-size: 14px; color: #666; margin-left: 5px;">/месяц</span></div>
+            <a href="#contact" style="width: 100%; margin: 25px 0; padding: 14px 24px; font-size: 16px; font-weight: 700; border-radius: 8px; transition: all 0.3s ease; letter-spacing: 0.5px; background: #0F1419; color: white; border: none; cursor: pointer; text-decoration: none; display: block; text-align: center;" onmouseover="this.style.background='#0a0e12'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 20px rgba(15, 20, 25, 0.3)'" onmouseout="this.style.background='#0F1419'; this.style.transform='translateY(0)'; this.style.boxShadow='none'">Выбрать тариф</a>
+            <ul style="list-style: none; margin: 0; padding: 0;">
+                ${p.features.map(f => `<li style="padding: 12px 0; color: #666; font-size: 14px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #f0f0f0; transition: all 0.3s ease;" onmouseover="this.style.color='#0F1419'" onmouseout="this.style.color='#666'"><span style="color: #0F1419; font-weight: 900; font-size: 16px;">✓</span>${f}</li>`).join('')}
+            </ul>
+        </div>
+    `).join('');
+    document.getElementById('pricingGrid').innerHTML = pricingHTML;
+
+    // Testimonials
+    const testimonialsHTML = data.testimonials.map(t => `
+        <div class="testimonial-card">
+            <div class="testimonial-header">
+                <div class="testimonial-avatar">${t.avatar}</div>
+                <div>
+                    <div class="testimonial-name">${t.name}</div>
+                    <div class="testimonial-date">${t.date}</div>
+                </div>
+            </div>
+            <div class="testimonial-text">"${t.text}"</div>
+        </div>
+    `).join('');
+    document.getElementById('testimonialsGrid').innerHTML = testimonialsHTML;
+
+    // FAQ
+    const faqHTML = data.faq.map((f, i) => `
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(${i})">
+                <span>${f.q}</span>
+                <span class="faq-toggle">▼</span>
+            </button>
+            <div class="faq-answer" id="answer-${i}" style="display: none;">
+                ${f.a}
+            </div>
+        </div>
+    `).join('');
+    document.getElementById('faqGrid').innerHTML = faqHTML;
+}
+
+// FAQ Toggle
+function toggleFaq(i) {
+    const answer = document.getElementById(`answer-${i}`);
+    const button = answer.previousElementSibling;
+    const toggle = button.querySelector('.faq-toggle');
+    
+    if (answer.style.display === 'none') {
+        answer.style.display = 'block';
+        button.classList.add('open');
+        toggle.classList.add('open');
+    } else {
+        answer.style.display = 'none';
+        button.classList.remove('open');
+        toggle.classList.remove('open');
+    }
+}
+
+// ADMIN
+function openAdmin() {
+    document.getElementById('adminOverlay').classList.add('open');
+}
+
+function closeAdmin() {
+    document.getElementById('adminOverlay').classList.remove('open');
+}
+
+function switchTab(tab) {
+    document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+    
+    document.getElementById(`tab-${tab}`).classList.add('active');
+    event.target.classList.add('active');
+}
+
+function showSaved() {
+    const msg = document.getElementById('savedMsg');
+    msg.classList.add('show');
+    setTimeout(() => msg.classList.remove('show'), 2000);
+}
+
+function saveHero() {
+    document.getElementById('heroTitle').textContent = document.getElementById('inputHeroTitle').value;
+    document.getElementById('heroSubtitle').textContent = document.getElementById('inputHeroSubtitle').value;
+    document.getElementById('heroDesc').textContent = document.getElementById('inputHeroDesc').value;
+    showSaved();
+}
+
+function saveDisclaimer() {
+    document.getElementById('disclaimerText').textContent = document.getElementById('inputDisclaimer').value;
+    showSaved();
+}
+
+function savePricing() {
+    showSaved();
+}
+
+function saveContacts() {
+    showSaved();
+}
+
+// Init
+render();
+
+// Close admin on overlay click
+document.getElementById('adminOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closeAdmin();
+});
+
+// Language switching
+function switchLanguage(lang) {
+    currentLang = lang;
+    data = lang === 'ru' ? dataRu : dataEn;
+    
+    // Update language buttons
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.dataset.lang === lang) btn.classList.add('active');
+    });
+    
+    // Update page content
+    updatePageContent();
+}
+
+function updatePageContent() {
+    render();
+    updateHeroContent();
+    updateDisclaimerContent();
+    updateSectionTitles();
+}
+
+function updateHeroContent() {
+    if (currentLang === 'ru') {
+        document.getElementById('heroTitle').textContent = 'Пассивный доход на Forex';
+        document.getElementById('heroSubtitle').textContent = 'без графиков и сложностей';
+        document.getElementById('heroDesc').textContent = 'Профессиональный торговый робот MultiTrade работает за вас 24/5. Три независимые стратегии, автоматический анализ рынка, защита капитала.';
+    } else {
+        document.getElementById('heroTitle').textContent = 'Passive Income on Forex';
+        document.getElementById('heroSubtitle').textContent = 'without charts and complexity';
+        document.getElementById('heroDesc').textContent = 'Professional trading robot MultiTrade works for you 24/5. Three independent strategies, automatic market analysis, capital protection.';
+    }
+}
+
+function updateDisclaimerContent() {
+    if (currentLang === 'ru') {
+        document.getElementById('disclaimerText').textContent = 'Торговля на Forex связана с высокими рисками потери капитала. Результаты прошлых периодов не гарантируют будущую доходность. MultiTrade — это торговый инструмент, а не инвестиционный совет. Перед использованием ознакомьтесь со всеми рисками.';
+    } else {
+        document.getElementById('disclaimerText').textContent = 'Forex trading carries a high risk of capital loss. Past performance does not guarantee future returns. MultiTrade is a trading tool, not investment advice. Please read all risks before using.';
+    }
+}
+
+function updateSectionTitles() {
+    const titles = {
+        ru: {
+            features: 'Почему MultiTrade идеален для новичков',
+            modes: 'Режимы торговли',
+            pricing: 'Тарифы',
+            testimonials: 'Отзывы клиентов',
+            faq: 'Часто задаваемые вопросы',
+            contact: 'Оставьте заявку'
+        },
+        en: {
+            features: 'Why MultiTrade is Ideal for Beginners',
+            modes: 'Trading Modes',
+            pricing: 'Pricing',
+            testimonials: 'Client Reviews',
+            faq: 'Frequently Asked Questions',
+            contact: 'Leave a Request'
+        }
+    };
+    
+    const lang = currentLang;
+    document.querySelector('#features h2').textContent = titles[lang].features;
+    document.querySelector('#trading-modes h2').textContent = titles[lang].modes;
+    document.querySelector('#pricing h2').textContent = titles[lang].pricing;
+    document.querySelector('#testimonials h2').textContent = titles[lang].testimonials;
+    document.querySelector('#faq h2').textContent = titles[lang].faq;
+    document.querySelector('#contact h2').textContent = titles[lang].contact;
+}
+
+// Google Apps Script URL
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxZq-6wyp3NQtKXN9vl6_7k9Fl2hJC_qcCJY8XXEIRqaRdA4u57fdlXv95PU5zvmdGT6w/exec';
+
+// Handle contact form submission
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const name = document.getElementById('formName').value;
+    const email = document.getElementById('formEmail').value;
+    const phone = document.getElementById('formPhone').value;
+    const message = document.getElementById('formMessage').value;
+    const submitBtn = document.getElementById('submitBtn');
+    
+    // Disable button and show loading state
+    const originalText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = '⏳ Отправка...';
+    
+    try {
+        // Send to Google Apps Script
+        const response = await fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            body: new URLSearchParams({
+                name: name,
+                email: email,
+                phone: phone,
+                message: message
+            })
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            // Success - show message
+            submitBtn.textContent = '✅ Заявка отправлена!';
+            submitBtn.style.background = '#28a745';
+            
+            // Clear form
+            document.getElementById('contactForm').reset();
+            
+            // Reset button after 3 seconds
+            setTimeout(() => {
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+                submitBtn.style.background = '#0F1419';
+            }, 3000);
+            
+            // Show success message
+            alert('Спасибо! Ваша заявка отправлена. Мы свяжемся с вами в течение часа.');
+        } else {
+            throw new Error('Ошибка отправки');
+        }
+    } catch (error) {
+        console.error('Ошибка:', error);
+        submitBtn.textContent = '❌ Ошибка отправки';
+        submitBtn.style.background = '#dc3545';
+        
+        setTimeout(() => {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+            submitBtn.style.background = '#0F1419';
+        }, 2000);
+        
+        alert('Ошибка при отправке заявки. Пожалуйста, попробуйте ещё раз.');
+    }
+});
+</script>
+
+</body>
+</html>
