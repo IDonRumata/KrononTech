@@ -1031,8 +1031,8 @@ const dataRu = {
         { name: 'Настройка под ключ', price: 950, features: ['Всё из предыдущего', 'Полная настройка', 'Консультация', 'Оптимизация', 'Приоритет', '1 месяц бесплатно'], popular: true }
     ],
     testimonials: [
-        { name: 'Ольга', date: '03 сентября 2024', text: 'Я очень оценила вашего робота, потому что он спокойный. Вы всё настроили — я только захожу и радуюсь прибыли 😊', avatar: 'O' },
-        { name: 'Олеся', date: '12 февраля 2025', text: 'Пользуюсь роботом почти год, всё понятно и прозрачно. Советую и буду расширяться дальше👌', avatar: 'O' },
+        { name: 'Ольга', date: '30 сентября 2024', text: 'Я очень оценила вашего робота, потому что он спокойный. Вы всё настроили — я только захожу и радуюсь прибыли 😊', avatar: 'O' },
+        { name: 'Олесь', date: '30 сентября 2024', text: 'Пользуюсь роботом почти год, всё понятно и прозрачно. Советую и буду расширяться дальше👌', avatar: 'O' },
         { name: 'Александр', date: 'Недавно', text: 'Начинал с небольшой суммы, тестировал. Потом докупил и увеличил депозит. Результатами доволен.', avatar: 'A' }
     ],
     faq: [
@@ -1233,11 +1233,86 @@ function switchLanguage(lang) {
     updatePageContent();
 }
 
+function updateFooterContent() {
+    const lang = currentLang;
+    
+    if (lang === 'en') {
+        // Переводим footer
+        const footerSections = document.querySelectorAll('.footer-section h3');
+        if (footerSections[0]) footerSections[0].textContent = 'About MultiTrade';
+        if (footerSections[1]) footerSections[1].textContent = 'Contacts';
+        if (footerSections[2]) footerSections[2].textContent = 'Social Media';
+        
+        // Описание о компании
+        const footerText = document.querySelector('.footer-section p');
+        if (footerText) {
+            footerText.textContent = 'MultiTrade — a professional trading robot for automated Forex trading since 2019. We help beginners earn without experience.';
+        }
+    } else {
+        // Russian
+        const footerSections = document.querySelectorAll('.footer-section h3');
+        if (footerSections[0]) footerSections[0].textContent = 'О MultiTrade';
+        if (footerSections[1]) footerSections[1].textContent = 'Контакты';
+        if (footerSections[2]) footerSections[2].textContent = 'Социальные сети';
+        
+        const footerText = document.querySelector('.footer-section p');
+        if (footerText) {
+            footerText.textContent = 'MultiTrade — профессиональный торговый робот для автоматической торговли на Forex с 2019 года. Помогаем новичкам зарабатывать без опыта.';
+        }
+    }
+}
+
 function updatePageContent() {
     render();
     updateHeroContent();
     updateDisclaimerContent();
     updateSectionTitles();
+    updateButtonsText();
+    updateFooterContent();
+}
+
+function updateButtonsText() {
+    const lang = currentLang;
+    
+    if (lang === 'ru') {
+        // Кнопки в header
+        document.querySelectorAll('a.btn-primary').forEach(btn => {
+            if (btn.textContent.includes('Start') || btn.textContent.includes('Начать')) {
+                btn.textContent = 'Начать бесплатно';
+            }
+        });
+        
+        // Кнопки "Выбрать тариф"
+        document.querySelectorAll('a[href="#contact"]').forEach(link => {
+            if (link.textContent.includes('Choose') || link.textContent.includes('Выбрать')) {
+                link.textContent = 'Выбрать тариф';
+            }
+        });
+        
+        // Подписи под основным текстом
+        const heroSubtitle = document.querySelector('.hero-subtitle');
+        if (heroSubtitle) {
+            heroSubtitle.textContent = 'без графиков и сложностей';
+        }
+    } else {
+        // English
+        document.querySelectorAll('a.btn-primary').forEach(btn => {
+            if (btn.textContent.includes('Начать') || btn.textContent.includes('бесплатно')) {
+                btn.textContent = 'Start for Free';
+            }
+        });
+        
+        document.querySelectorAll('a[href="#contact"]').forEach(link => {
+            if (link.textContent.includes('Выбрать')) {
+                link.textContent = 'Choose Plan';
+            }
+        });
+        
+        const heroSubtitle = document.querySelector('.hero-subtitle');
+        if (heroSubtitle) {
+            heroSubtitle.textContent = 'without charts and complexity';
+        }
+    }
 }
 
 function updateHeroContent() {
@@ -1264,29 +1339,73 @@ function updateSectionTitles() {
     const titles = {
         ru: {
             features: 'Почему MultiTrade идеален для новичков',
+            featuresDesc: 'Зарабатывайте на Forex без специальных знаний',
             modes: 'Режимы торговли',
+            modesDesc: 'Выберите стратегию под текущий рынок',
             pricing: 'Тарифы',
+            pricingDesc: 'Выберите оптимальный план для старта',
             testimonials: 'Отзывы клиентов',
+            testimonialsDesc: 'Реальные истории людей, которые уже используют MULTITRADE',
             faq: 'Часто задаваемые вопросы',
-            contact: 'Оставьте заявку'
+            faqDesc: 'Ответы на основные вопросы о MultiTrade',
+            contact: 'Оставьте заявку',
+            disclaimer: 'ВАЖНО: Дисклеймер',
+            myfxbook: 'Статистика Myfxbook'
         },
         en: {
             features: 'Why MultiTrade is Ideal for Beginners',
+            featuresDesc: 'Make money on Forex without special knowledge',
             modes: 'Trading Modes',
+            modesDesc: 'Choose a strategy for the current market',
             pricing: 'Pricing',
+            pricingDesc: 'Choose the optimal plan to get started',
             testimonials: 'Client Reviews',
+            testimonialsDesc: 'Real stories from people already using MULTITRADE',
             faq: 'Frequently Asked Questions',
-            contact: 'Leave a Request'
+            faqDesc: 'Answers to common questions about MultiTrade',
+            contact: 'Leave a Request',
+            disclaimer: 'IMPORTANT: Disclaimer',
+            myfxbook: 'Myfxbook Statistics'
         }
     };
     
     const lang = currentLang;
-    document.querySelector('#features h2').textContent = titles[lang].features;
-    document.querySelector('#trading-modes h2').textContent = titles[lang].modes;
-    document.querySelector('#pricing h2').textContent = titles[lang].pricing;
-    document.querySelector('#testimonials h2').textContent = titles[lang].testimonials;
-    document.querySelector('#faq h2').textContent = titles[lang].faq;
-    document.querySelector('#contact h2').textContent = titles[lang].contact;
+    const t = titles[lang];
+    
+    // Заголовки секций
+    const featureH2 = document.querySelector('#features h2');
+    if (featureH2) featureH2.textContent = t.features;
+    
+    const modesH2 = document.querySelector('#trading-modes h2');
+    if (modesH2) modesH2.textContent = t.modes;
+    
+    const pricingH2 = document.querySelector('#pricing h2');
+    if (pricingH2) pricingH2.textContent = t.pricing;
+    
+    const testimonialsH2 = document.querySelector('#testimonials h2');
+    if (testimonialsH2) testimonialsH2.textContent = t.testimonials;
+    
+    const faqH2 = document.querySelector('#faq h2');
+    if (faqH2) faqH2.textContent = t.faq;
+    
+    const contactH2 = document.querySelector('#contact h2');
+    if (contactH2) contactH2.textContent = t.contact;
+    
+    // Подписи под заголовками (section-subtitle)
+    const subtitles = document.querySelectorAll('.section-subtitle');
+    if (subtitles[0]) subtitles[0].textContent = t.featuresDesc;
+    if (subtitles[1]) subtitles[1].textContent = t.modesDesc;
+    if (subtitles[2]) subtitles[2].textContent = t.pricingDesc;
+    if (subtitles[3]) subtitles[3].textContent = t.testimonialsDesc;
+    if (subtitles[4]) subtitles[4].textContent = t.faqDesc;
+    
+    // Disclaimer заголовок
+    const disclaimerH3 = document.querySelector('.disclaimer-text h3');
+    if (disclaimerH3) disclaimerH3.textContent = t.disclaimer;
+    
+    // Кнопка Myfxbook
+    const myfxbookBtn = document.querySelector('a[href*="myfxbook"]');
+    if (myfxbookBtn) myfxbookBtn.textContent = t.myfxbook;
 }
 
 // Email Modal Functions
