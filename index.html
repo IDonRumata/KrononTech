@@ -6,6 +6,7 @@
   <title>Kronon MultiTrade - Профессиональный торговый робот для Форекс</title>
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
     :root{
       --bg-dark:#0f1419; --bg-card:#1a1f2e;
       --accent-cyan:#06b6d4; --accent-emerald:#10b981;
@@ -56,6 +57,11 @@
   align-items:center;
   gap:1px;
   margin-left:15px;
+  cursor:pointer;
+  transition:opacity .3s;
+     }
+    .logo:hover{
+  opacity:.8;
      }
 
     .logo img{width:90px;height:90px;display:block}
@@ -185,10 +191,10 @@
   <header>
     <div class="container">
       <div class="header-content">
-        <div class="logo">
+        <a href="#" class="logo" style="text-decoration:none;color:inherit">
           <img src="logo-human.png" alt="KRONON TECH logo" width="45" height="45" />
           <span class="logo-text">KRONON TECH</span>
-        </div>
+        </a>
         <div class="header-right">
           <div class="lang-switcher">
             <button class="lang-btn active" data-lang-btn="ru">RU</button>
@@ -624,11 +630,11 @@
             <div class="testimonial-info">
               <h4 class="lang-active" data-lang="ru">Ольга</h4>
               <h4 data-lang="en">Olga</h4>
-              <div class="testimonial-date lang-active" data-lang="ru">30 сентября 2024</div>
-              <div class="testimonial-date" data-lang="en">September 30, 2024</div>
+              <div class="testimonial-date lang-active" data-lang="ru">3 сентября 2024</div>
+              <div class="testimonial-date" data-lang="en">September 3, 2024</div>
             </div>
           </div>
-          <div class="testimonial-text lang-active" data-lang="ru">Я очень оценила вашего робота, потому что он спокойный и с ним, в принципе, нет проблем. Вы всё настроили — я только захожу и радуюсь прибыли 😊</div>
+          <div class="testimonial-text lang-active" data-lang="ru">Я очень оценила вашего робота, потому что он спокойный и с ним, в принципе, нет проблем. Вы всё настроили, я только захожу и радуюсь прибыли 😊</div>
           <div class="testimonial-text" data-lang="en">I really appreciated your robot because it's calm and there are basically no problems with it. You set everything up — I just log in and enjoy the profit 😊</div>
         </div>
         
@@ -638,8 +644,8 @@
             <div class="testimonial-info">
               <h4 class="lang-active" data-lang="ru">Олеся</h4>
               <h4 data-lang="en">Olesya</h4>
-              <div class="testimonial-date lang-active" data-lang="ru">30 сентября 2024</div>
-              <div class="testimonial-date" data-lang="en">September 30, 2024</div>
+              <div class="testimonial-date lang-active" data-lang="ru">17 марта 2025</div>
+              <div class="testimonial-date" data-lang="en">March 17, 2025</div>
             </div>
           </div>
           <div class="testimonial-text lang-active" data-lang="ru">Пользуюсь роботом почти год, всё понятно и прозрачно. Советую и буду расширяться дальше👌</div>
@@ -714,7 +720,7 @@
             <svg class="icon" viewBox="0 0 24 24"><path d="M16.5 2.5v.06c.02.9.31 1.77.87 2.5a5.9 5.9 0 0 0 3 2.09c.35.12.7.2 1.06.25V9.9a9.5 9.5 0 0 1-5.94-1.99v6.86c0 3.42-2.77 6.2-6.19 6.23A6.2 6.2 0 0 1 3.9 14.8c.03-3.42 2.81-6.19 6.23-6.19.23 0 .46.01.68.04v3.08a3.18 3.18 0 1 0 0 6.36 3.18 3.18 0 0 0 3.18-3.18V2.5h2.51Z"/></svg>
           </div>
           <h3>TikTok</h3>
-          <a class="social-link" href="https://www.tiktok.com/@_don__rumata_" target="_blank" rel="noopener">@_don__rumata_</a>
+          <a class="social-link" href="https://www.tiktok.com/@comicskronon" target="_blank" rel="noopener">@comicskronon</a>
         </div>
 
         <!-- Email -->
@@ -732,8 +738,8 @@
   <!-- Footer -->
   <footer>
     <div class="container">
-      <p class="lang-active" data-lang="ru">&copy; 2025 Kronon MultiTrade. Работаем с 2018 года.</p>
-      <p data-lang="en">&copy; 2025 Kronon MultiTrade. Operating since 2018.</p>
+      <p class="lang-active" data-lang="ru">&copy; 2025 Kronon Tech. Работаем с 2019 года.</p>
+      <p data-lang="en">&copy; 2025 Kronon Tech. Operating since 2019.</p>
       <p style="margin-top:10px;font-size:14px;" class="lang-active" data-lang="ru">Торговля на финансовых рынках сопряжена с рисками. Прошлые результаты не гарантируют будущую прибыль.</p>
       <p style="margin-top:10px;font-size:14px;" data-lang="en">Trading in financial markets involves risks. Past results do not guarantee future profits.</p>
     </div>
